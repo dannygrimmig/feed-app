@@ -2,11 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Dashboard } from "./pages/Dashboard/Dashboard";
+import { Expenses } from "./pages/Expenses/Expenses";
+import { Savings } from "./pages/Savings/Savings";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +18,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "dashboard",
-        element: <h1>dashboard</h1>,
+        element: <Dashboard />,
+      },
+      {
+        path: "expenses",
+        element: <Expenses />,
+      },
+      {
+        path: "savings",
+        element: <Savings />,
       },
     ],
   },
