@@ -6,8 +6,8 @@ function App() {
   const links = ["dashboard", "expenses", "savings"];
 
   return (
-    <div className="App font-sans font-thin p-4 max-w-6xl mx-auto">
-      <div className="text-slate-800 bg-sky-200 px-8 py-4 rounded-lg mb-8 sticky top-0 shadow-[5px_5px] shadow-slate-800 border border-slate-800">
+    <div className="App font-mono font-thin p-4 max-w-6xl mx-auto">
+      <div className="text-slate-800 bg-sky-200 px-8 py-4 rounded-lg mb-6 sticky top-0 shadow-[5px_5px] shadow-slate-800 border border-slate-800 z-10">
         <h1 className="text-2xl font-black">Financial Portfolio</h1>
         <div className="flex space-x-4">
           {links.map((link) => (
