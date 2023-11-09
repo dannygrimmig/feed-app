@@ -2,8 +2,7 @@ import * as React from "react";
 import { LineChart, PieChart, BarChart } from "@mui/x-charts";
 
 export function Dashboard() {
-  const boxStyles =
-    "rounded-lg shadow-[5px_5px] shadow-slate-800 border border-slate-800 p-4";
+  const boxStyles = "rounded-lg p-4";
 
   const annualNet = [
     {
@@ -110,7 +109,7 @@ export function Dashboard() {
     <>
       {/* <h1 className="text-5xl mb-4">Dashboard</h1> */}
       <div className="grid grid-rows-3 md:grid-cols-3 md:grid-rows-2 h-[1000px] md:h-[550px] gap-4">
-        <div className={`md:col-span-2 md:row-span-2 bg-sky-100 ${boxStyles}`}>
+        <div className={`md:col-span-2 md:row-span-2 bg-sky-800 ${boxStyles}`}>
           <h1 className="text-2xl">net</h1>
           <LineChart
             xAxis={[
@@ -143,7 +142,7 @@ export function Dashboard() {
           />
         </div>
 
-        <div className={`bg-sky-300 ${boxStyles}`}>
+        <div className={`bg-sky-800 ${boxStyles}`}>
           <h1 className="text-2xl">expenses</h1>
 
           <PieChart
