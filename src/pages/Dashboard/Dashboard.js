@@ -1,6 +1,7 @@
 import * as React from "react";
 import { LineChart, PieChart, BarChart } from "@mui/x-charts";
 import { annualNet, keyToLabel, colors } from "../../data/net";
+import { DataGrid } from "@mui/x-data-grid";
 
 export function Dashboard() {
   const lightBoxStyles = "from-sky-200 to-sky-300 shadow-slate-800";
@@ -11,19 +12,91 @@ export function Dashboard() {
   const [populatingPieData, setPopulatingPieData] = React.useState(false);
   const [populatingBarData, setPopulatingBarData] = React.useState(false);
 
+  const columns = [
+    { field: "month", headerName: "Month", editable: false },
+    {
+      field: "cash",
+      headerName: "Cash",
+      type: "number",
+      align: "center",
+      headerAlign: "center",
+      editable: true,
+    },
+    {
+      field: "savings",
+      headerName: "Savings",
+      type: "number",
+      align: "center",
+      headerAlign: "center",
+      editable: true,
+    },
+    {
+      field: "investing",
+      headerName: "Investing",
+      type: "number",
+      align: "center",
+      headerAlign: "center",
+      editable: true,
+    },
+  ];
+  const rows = [
+    {
+      id: 1,
+      month: "January",
+      cash: 200,
+      savings: 5000,
+      investing: 8000,
+    },
+    {
+      id: 2,
+      month: "February",
+      cash: 250,
+      savings: 4500,
+      investing: 9000,
+    },
+    {
+      id: 3,
+      month: "March",
+      cash: 200,
+      savings: 4500,
+      investing: 8000,
+    },
+    {
+      id: 4,
+      month: "April",
+      cash: 250,
+      savings: 4000,
+      investing: 6000,
+    },
+    {
+      id: 5,
+      month: "May",
+      cash: 300,
+      savings: 4000,
+      investing: 8000,
+    },
+  ];
+
   return (
     <>
       <div className="grid grid-rows-3 md:grid-cols-3 md:grid-rows-2 h-[1000px] md:h-[550px] gap-4">
         <div
-          onClick={() => setPopulatingLineData(!populatingLineData)}
+          onMouseOver={() => setPopulatingLineData(true)}
+          onMouseLeave={() => setPopulatingLineData(false)}
           className={`md:col-span-2 md:row-span-2 ${boxStyles}`}
         >
           <h1 className="text-2xl font-header">net</h1>
 
           {populatingLineData ? (
             <div>
-              fill in the date for the line chart here... maybe a form, grid,
-              modal
+              <DataGrid
+                editMode="row"
+                rows={rows}
+                columns={columns}
+                processRowUpdate={(updatedRow, originalRow) =>
+                  console.log(updatedRow)
+                }
+              />
             </div>
           ) : (
             <LineChart
