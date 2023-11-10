@@ -3,8 +3,9 @@ import { LineChart, PieChart, BarChart } from "@mui/x-charts";
 import { annualNet, keyToLabel, colors } from "../../data/net";
 
 export function Dashboard() {
-  const boxStyles =
-    "rounded-lg p-4 bg-gradient-to-r from-sky-200 to-sky-300 dark:from-sky-700 dark:to-sky-800 cursor-pointer border border-slate-800 shadow-[-5px_5px] shadow-slate-800  hover:shadow-[-8px_8px] hover:-mr-1 hover:-mt-1 transition-all";
+  const lightBoxStyles = "from-sky-200 to-sky-300 shadow-slate-800";
+  const darkBoxStyles = "dark:from-sky-700 dark:to-sky-800 dark:shadow-sky-600";
+  const boxStyles = `rounded-lg p-4 cursor-pointer border border-slate-800 bg-gradient-to-r shadow-[-5px_5px] hover:shadow-[-8px_8px] hover:-mr-1 hover:-mt-1 ${lightBoxStyles} ${darkBoxStyles} `;
 
   return (
     <>
@@ -35,8 +36,8 @@ export function Dashboard() {
             slotProps={{
               legend: {
                 labelStyle: {
-                  fontFamily: "monospace",
-                  fontSize: "12px",
+                  fontFamily: "Outfit, sans-serif",
+                  fontSize: "14px",
                 },
               },
             }}
@@ -65,8 +66,8 @@ export function Dashboard() {
             slotProps={{
               legend: {
                 labelStyle: {
-                  fontFamily: "monospace",
-                  fontSize: "12px",
+                  fontFamily: "Outfit, sans-serif",
+                  fontSize: "14px",
                 },
               },
             }}

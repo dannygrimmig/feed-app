@@ -76,6 +76,9 @@ export const annualNet = [
     savings: 3500,
     investing: 4000,
   },
+  {
+    month: 12,
+  },
 ];
 
 export const keyToLabel = {
