@@ -1,6 +1,11 @@
 import * as React from "react";
 import { LineChart, PieChart, BarChart } from "@mui/x-charts";
-import { emptyLineChartData, keyToLabel, colors } from "../../data/net";
+import {
+  emptyLineChartData,
+  columns,
+  keyToLabel,
+  colors,
+} from "../../data/net";
 import { DataGrid } from "@mui/x-data-grid";
 
 export function Dashboard() {
@@ -11,34 +16,6 @@ export function Dashboard() {
   const [populatingLineData, setPopulatingLineData] = React.useState(false);
   const [populatingPieData, setPopulatingPieData] = React.useState(false);
   const [populatingBarData, setPopulatingBarData] = React.useState(false);
-
-  const columns = [
-    { field: "month", headerName: "Month", editable: false },
-    {
-      field: "checking",
-      headerName: "Checking",
-      type: "number",
-      align: "center",
-      headerAlign: "center",
-      editable: true,
-    },
-    {
-      field: "savings",
-      headerName: "Savings",
-      type: "number",
-      align: "center",
-      headerAlign: "center",
-      editable: true,
-    },
-    {
-      field: "investing",
-      headerName: "Investing",
-      type: "number",
-      align: "center",
-      headerAlign: "center",
-      editable: true,
-    },
-  ];
 
   const [lineChartDataState, setLineChartDataState] =
     React.useState(emptyLineChartData);
@@ -54,11 +31,12 @@ export function Dashboard() {
           <h1 className="text-2xl font-header">net</h1>
 
           {populatingLineData ? (
-            <div style={{ height: "100%" }}>
+            <div style={{ height: "90%" }}>
               <DataGrid
                 editMode="row"
                 rows={lineChartDataState}
                 columns={columns}
+                getRowClassName={(params) => "font-body"}
                 processRowUpdate={(updatedRow, originalRow) => {
                   const updatedLineChartDataState = lineChartDataState.map(
                     (currRow) => {

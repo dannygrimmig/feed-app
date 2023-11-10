@@ -49,6 +49,42 @@ export const emptyLineChartData = [
   },
 ];
 
+export const columns = [
+  {
+    field: "month",
+    headerClassName: "font-header",
+    headerName: "Month",
+    editable: false,
+  },
+  {
+    field: "checking",
+    headerName: "Checking",
+    headerClassName: "font-header",
+    type: "number",
+    align: "center",
+    headerAlign: "center",
+    editable: true,
+  },
+  {
+    field: "savings",
+    headerName: "Savings",
+    headerClassName: "font-header",
+    type: "number",
+    align: "center",
+    headerAlign: "center",
+    editable: true,
+  },
+  {
+    field: "investing",
+    headerName: "Investing",
+    headerClassName: "font-header",
+    type: "number",
+    align: "center",
+    headerAlign: "center",
+    editable: true,
+  },
+];
+
 export const keyToLabel = {
   investing: "Investing",
   savings: "Savings",
