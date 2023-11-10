@@ -3,14 +3,16 @@ import { LineChart, PieChart, BarChart } from "@mui/x-charts";
 import { annualNet, keyToLabel, colors } from "../../data/net";
 
 export function Dashboard() {
-  const boxStyles = "rounded-lg p-4";
+  const boxStyles =
+    "rounded-lg p-4 bg-gradient-to-r from-sky-400 to-sky-800 hover:from-sky-200 hover:to-sky-500 cursor-pointer";
 
   return (
     <>
       {/* <h1 className="text-5xl mb-4">Dashboard</h1> */}
       <div className="grid grid-rows-3 md:grid-cols-3 md:grid-rows-2 h-[1000px] md:h-[550px] gap-4">
-        <div className={`md:col-span-2 md:row-span-2 bg-sky-800 ${boxStyles}`}>
+        <div className={`md:col-span-2 md:row-span-2 ${boxStyles}`}>
           <h1 className="text-2xl">net</h1>
+
           <LineChart
             xAxis={[
               {
@@ -42,7 +44,7 @@ export function Dashboard() {
           />
         </div>
 
-        <div className={`bg-sky-800 ${boxStyles}`}>
+        <div className={`${boxStyles}`}>
           <h1 className="text-2xl">expenses</h1>
 
           <PieChart
@@ -72,7 +74,7 @@ export function Dashboard() {
           />
         </div>
 
-        <div className={`bg-sky-800 ${boxStyles}`}>
+        <div className={`${boxStyles}`}>
           <h1 className="text-2xl">budget</h1>
           <BarChart
             xAxis={[{ scaleType: "band", data: ["Petal", "Bilt", "Amex"] }]}
