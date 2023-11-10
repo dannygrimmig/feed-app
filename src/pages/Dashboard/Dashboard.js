@@ -1,6 +1,6 @@
 import * as React from "react";
 import { LineChart, PieChart, BarChart } from "@mui/x-charts";
-import { annualNet, keyToLabel, colors } from "../../data/net";
+import { emptyLineChartData, keyToLabel, colors } from "../../data/net";
 import { DataGrid } from "@mui/x-data-grid";
 
 export function Dashboard() {
@@ -15,8 +15,8 @@ export function Dashboard() {
   const columns = [
     { field: "month", headerName: "Month", editable: false },
     {
-      field: "cash",
-      headerName: "Cash",
+      field: "checking",
+      headerName: "Checking",
       type: "number",
       align: "center",
       headerAlign: "center",
@@ -39,43 +39,9 @@ export function Dashboard() {
       editable: true,
     },
   ];
-  const rows = [
-    {
-      id: 1,
-      month: "January",
-      cash: 200,
-      savings: 5000,
-      investing: 8000,
-    },
-    {
-      id: 2,
-      month: "February",
-      cash: 250,
-      savings: 4500,
-      investing: 9000,
-    },
-    {
-      id: 3,
-      month: "March",
-      cash: 200,
-      savings: 4500,
-      investing: 8000,
-    },
-    {
-      id: 4,
-      month: "April",
-      cash: 250,
-      savings: 4000,
-      investing: 6000,
-    },
-    {
-      id: 5,
-      month: "May",
-      cash: 300,
-      savings: 4000,
-      investing: 8000,
-    },
-  ];
+
+  const [lineChartDataState, setLineChartDataState] =
+    React.useState(emptyLineChartData);
 
   return (
     <>
@@ -88,21 +54,36 @@ export function Dashboard() {
           <h1 className="text-2xl font-header">net</h1>
 
           {populatingLineData ? (
-            <div>
+            <div style={{ height: "100%" }}>
               <DataGrid
                 editMode="row"
-                rows={rows}
+                rows={lineChartDataState}
                 columns={columns}
-                processRowUpdate={(updatedRow, originalRow) =>
-                  console.log(updatedRow)
-                }
+                processRowUpdate={(updatedRow, originalRow) => {
+                  const updatedLineChartDataState = lineChartDataState.map(
+                    (currRow) => {
+                      if (currRow === originalRow) {
+                        return {
+                          ...updatedRow,
+                          net:
+                            updatedRow.checking +
+                            updatedRow.savings +
+                            updatedRow.investing,
+                        };
+                      } else {
+                        return currRow;
+                      }
+                    }
+                  );
+                  setLineChartDataState(updatedLineChartDataState);
+                }}
               />
             </div>
           ) : (
             <LineChart
               xAxis={[
                 {
-                  dataKey: "month",
+                  dataKey: "id",
                   valueFormatter: (v) => v.toString(),
                 },
               ]}
@@ -113,7 +94,7 @@ export function Dashboard() {
                 showMark: false,
                 curve: "linear",
               }))}
-              dataset={annualNet}
+              dataset={lineChartDataState}
               sx={{
                 ".MuiLineElement-root, .MuiMarkElement-root": {
                   strokeWidth: 3,
