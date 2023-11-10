@@ -11,7 +11,7 @@ import { DataGrid } from "@mui/x-data-grid";
 export function Dashboard() {
   const lightBoxStyles = "from-sky-200 to-sky-300 shadow-slate-800";
   const darkBoxStyles = "dark:from-sky-700 dark:to-sky-800 dark:shadow-sky-600";
-  const boxStyles = `rounded-lg p-4 cursor-pointer border border-slate-800 bg-gradient-to-r shadow-[-5px_5px] hover:shadow-[-8px_8px] hover:-mr-1 hover:-mt-1 ${lightBoxStyles} ${darkBoxStyles} `;
+  const boxStyles = `rounded-lg p-4 border border-slate-800 bg-gradient-to-r shadow-[-5px_5px] hover:shadow-[-8px_8px] hover:-mr-1 hover:-mt-1 ${lightBoxStyles} ${darkBoxStyles} `;
 
   const [populatingLineData, setPopulatingLineData] = React.useState(false);
   const [populatingPieData, setPopulatingPieData] = React.useState(false);
@@ -23,12 +23,13 @@ export function Dashboard() {
   return (
     <>
       <div className="grid grid-rows-3 md:grid-cols-3 md:grid-rows-2 h-[1000px] md:h-[550px] gap-4">
-        <div
-          onMouseOver={() => setPopulatingLineData(true)}
-          onMouseLeave={() => setPopulatingLineData(false)}
-          className={`md:col-span-2 md:row-span-2 ${boxStyles}`}
-        >
-          <h1 className="text-2xl font-header">net</h1>
+        <div className={`md:col-span-2 md:row-span-2 ${boxStyles}`}>
+          <h1
+            onClick={() => setPopulatingLineData(!populatingLineData)}
+            className="text-2xl font-header cursor-pointer w-max"
+          >
+            net
+          </h1>
 
           {populatingLineData ? (
             <div style={{ height: "90%" }}>
@@ -90,11 +91,13 @@ export function Dashboard() {
           )}
         </div>
 
-        <div
-          onClick={() => setPopulatingPieData(!populatingPieData)}
-          className={`${boxStyles}`}
-        >
-          <h1 className="text-2xl font-header">expenses</h1>
+        <div className={`${boxStyles}`}>
+          <h1
+            onClick={() => setPopulatingPieData(!populatingPieData)}
+            className="text-2xl font-header cursor-pointer w-max"
+          >
+            expenses
+          </h1>
 
           {populatingPieData ? (
             <div>fill in data for pie chart</div>
@@ -132,11 +135,13 @@ export function Dashboard() {
           )}
         </div>
 
-        <div
-          onClick={() => setPopulatingBarData(!populatingBarData)}
-          className={`${boxStyles}`}
-        >
-          <h1 className="text-2xl font-header">budget</h1>
+        <div className={`${boxStyles}`}>
+          <h1
+            onClick={() => setPopulatingBarData(!populatingBarData)}
+            className="text-2xl font-header cursor-pointer w-max"
+          >
+            budget
+          </h1>
 
           {populatingBarData ? (
             <div>fill in data for bar chart</div>
