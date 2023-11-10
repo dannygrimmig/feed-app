@@ -15,11 +15,11 @@ function App() {
 
   return (
     <div className={`App ${darkMode && "dark"}`}>
-      <div className="Window min-h-screen font-mono font-thin dark:bg-sky-950 text-stone-800 dark:text-stone-200">
+      <div className="Window min-h-screen font-body dark:bg-sky-950 text-stone-800 dark:text-stone-200">
         <div className="max-w-7xl mx-auto p-4">
-          <div className="bg-stone-200 dark:bg-sky-900 text-stone-800 dark:text-stone-200 px-8 py-4 rounded-lg mb-6 sticky top-0 z-10 flex items-center justify-between">
+          <div className="bg-stone-200 dark:bg-sky-900 text-stone-800 dark:text-stone-200 px-8 py-4 rounded-lg mb-6 sticky top-0 z-10 flex items-center justify-between border border-slate-800 shadow-[-5px_5px] shadow-slate-800">
             <div>
-              <h1 className="text-2xl font-black">Financial Portfolio</h1>
+              <h1 className="text-2xl font-header">Financial Portfolio</h1>
 
               <div className="flex space-x-4">
                 {links.map((link) => (

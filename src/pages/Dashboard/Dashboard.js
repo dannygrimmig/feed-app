@@ -4,14 +4,13 @@ import { annualNet, keyToLabel, colors } from "../../data/net";
 
 export function Dashboard() {
   const boxStyles =
-    "rounded-lg p-4 bg-gradient-to-r from-sky-200 to-sky-300 dark:from-sky-700 dark:to-sky-800 cursor-pointer";
+    "rounded-lg p-4 bg-gradient-to-r from-sky-200 to-sky-300 dark:from-sky-700 dark:to-sky-800 cursor-pointer border border-slate-800 shadow-[-5px_5px] shadow-slate-800  hover:shadow-[-8px_8px] hover:-mr-1 hover:-mt-1 transition-all";
 
   return (
     <>
-      {/* <h1 className="text-5xl mb-4">Dashboard</h1> */}
       <div className="grid grid-rows-3 md:grid-cols-3 md:grid-rows-2 h-[1000px] md:h-[550px] gap-4">
         <div className={`md:col-span-2 md:row-span-2 ${boxStyles}`}>
-          <h1 className="text-2xl">net</h1>
+          <h1 className="text-2xl font-header">net</h1>
 
           <LineChart
             xAxis={[
@@ -45,7 +44,7 @@ export function Dashboard() {
         </div>
 
         <div className={`${boxStyles}`}>
-          <h1 className="text-2xl">expenses</h1>
+          <h1 className="text-2xl font-header">expenses</h1>
 
           <PieChart
             series={[
@@ -75,7 +74,7 @@ export function Dashboard() {
         </div>
 
         <div className={`${boxStyles}`}>
-          <h1 className="text-2xl">budget</h1>
+          <h1 className="text-2xl font-header">budget</h1>
           <BarChart
             xAxis={[{ scaleType: "band", data: ["Petal", "Bilt", "Amex"] }]}
             series={[{ data: [200, 300, 400] }, { data: [250, 600, 410] }]}
