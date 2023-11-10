@@ -4,7 +4,7 @@ import { annualNet, keyToLabel, colors } from "../../data/net";
 
 export function Dashboard() {
   const boxStyles =
-    "rounded-lg p-4 bg-gradient-to-r from-sky-200 to-sky-300 hover:from-sky-300 hover:to-sky-400 cursor-pointer text-stone-800";
+    "rounded-lg p-4 bg-gradient-to-r from-sky-200 to-sky-300 dark:from-sky-700 dark:to-sky-800 cursor-pointer";
 
   return (
     <>
