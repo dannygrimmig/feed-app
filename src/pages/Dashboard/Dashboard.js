@@ -1,12 +1,8 @@
 import * as React from "react";
 import { LineChart, PieChart, BarChart } from "@mui/x-charts";
-import {
-  emptyLineChartData,
-  columns,
-  keyToLabel,
-  colors,
-} from "../../data/net";
+import { columns, keyToLabel, colors } from "../../data/net";
 import { DataGrid } from "@mui/x-data-grid";
+import { myContext } from "../../contexts/LineChartContext";
 
 export function Dashboard() {
   const lightBoxStyles = "from-sky-200 to-sky-300 shadow-slate-800";
@@ -17,8 +13,7 @@ export function Dashboard() {
   const [populatingPieData, setPopulatingPieData] = React.useState(false);
   const [populatingBarData, setPopulatingBarData] = React.useState(false);
 
-  const [lineChartDataState, setLineChartDataState] =
-    React.useState(emptyLineChartData);
+  const { data, setData } = React.useContext(myContext);
 
   return (
     <>
@@ -35,26 +30,24 @@ export function Dashboard() {
             <div style={{ height: "90%" }}>
               <DataGrid
                 editMode="row"
-                rows={lineChartDataState}
+                rows={data}
                 columns={columns}
                 getRowClassName={(params) => "font-body"}
                 processRowUpdate={(updatedRow, originalRow) => {
-                  const updatedLineChartDataState = lineChartDataState.map(
-                    (currRow) => {
-                      if (currRow === originalRow) {
-                        return {
-                          ...updatedRow,
-                          net:
-                            updatedRow.checking +
-                            updatedRow.savings +
-                            updatedRow.investing,
-                        };
-                      } else {
-                        return currRow;
-                      }
+                  const updatedLineChartDataState = data.map((currRow) => {
+                    if (currRow === originalRow) {
+                      return {
+                        ...updatedRow,
+                        net:
+                          updatedRow.checking +
+                          updatedRow.savings +
+                          updatedRow.investing,
+                      };
+                    } else {
+                      return currRow;
                     }
-                  );
-                  setLineChartDataState(updatedLineChartDataState);
+                  });
+                  setData(updatedLineChartDataState);
                 }}
               />
             </div>
@@ -73,7 +66,7 @@ export function Dashboard() {
                 showMark: false,
                 curve: "linear",
               }))}
-              dataset={lineChartDataState}
+              dataset={data}
               sx={{
                 ".MuiLineElement-root, .MuiMarkElement-root": {
                   strokeWidth: 3,
