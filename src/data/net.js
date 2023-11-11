@@ -49,7 +49,7 @@ export const emptyLineChartData = [
   },
 ];
 
-export const columns = [
+export const lineColumns = [
   {
     field: "month",
     headerClassName: "font-header",
@@ -93,8 +93,8 @@ export const keyToLabel = {
 };
 
 export const colors = {
-  net: "navy",
-  checking: "green",
+  net: "darkgreen",
+  checking: "navy",
   savings: "steelblue",
-  investing: "pink",
+  investing: "aliceblue",
 };

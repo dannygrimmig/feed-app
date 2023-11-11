@@ -1,8 +1,11 @@
 import * as React from "react";
 import { LineChart, PieChart, BarChart } from "@mui/x-charts";
-import { columns, keyToLabel, colors } from "../../data/net";
 import { DataGrid } from "@mui/x-data-grid";
+
 import { myContext } from "../../contexts/LineChartContext";
+
+import { lineColumns, keyToLabel, colors } from "../../data/net";
+import { pieColumns } from "../../data/expenses";
 
 export function Dashboard() {
   const lightBoxStyles = "from-sky-200 to-sky-300 shadow-slate-800";
@@ -13,7 +16,8 @@ export function Dashboard() {
   const [populatingPieData, setPopulatingPieData] = React.useState(false);
   const [populatingBarData, setPopulatingBarData] = React.useState(false);
 
-  const { data, setData } = React.useContext(myContext);
+  const { netData, setNetData } = React.useContext(myContext);
+  const { pieData, setPieData } = React.useContext(myContext);
 
   return (
     <>
@@ -30,11 +34,11 @@ export function Dashboard() {
             <div style={{ height: "90%" }}>
               <DataGrid
                 editMode="row"
-                rows={data}
-                columns={columns}
+                rows={netData}
+                columns={lineColumns}
                 getRowClassName={(params) => "font-body"}
                 processRowUpdate={(updatedRow, originalRow) => {
-                  const updatedLineChartDataState = data.map((currRow) => {
+                  const updatedLineChartDataState = netData.map((currRow) => {
                     if (currRow === originalRow) {
                       return {
                         ...updatedRow,
@@ -47,7 +51,7 @@ export function Dashboard() {
                       return currRow;
                     }
                   });
-                  setData(updatedLineChartDataState);
+                  setNetData(updatedLineChartDataState);
                 }}
               />
             </div>
@@ -66,7 +70,7 @@ export function Dashboard() {
                 showMark: false,
                 curve: "linear",
               }))}
-              dataset={data}
+              dataset={netData}
               sx={{
                 ".MuiLineElement-root, .MuiMarkElement-root": {
                   strokeWidth: 3,
@@ -93,23 +97,31 @@ export function Dashboard() {
           </h1>
 
           {populatingPieData ? (
-            <div>fill in data for pie chart</div>
+            <div style={{ height: "90%" }}>
+              <DataGrid
+                editMode="row"
+                rows={pieData}
+                columns={pieColumns}
+                getRowClassName={(params) => "font-body"}
+                processRowUpdate={(updatedRow, originalRow) => {
+                  const updatedPieChartData = pieData.map((currRow) => {
+                    if (currRow === originalRow) {
+                      return {
+                        ...updatedRow,
+                      };
+                    } else {
+                      return currRow;
+                    }
+                  });
+                  setPieData(updatedPieChartData);
+                }}
+              />
+            </div>
           ) : (
             <PieChart
               series={[
                 {
-                  data: [
-                    {
-                      id: 0,
-                      value: 30,
-                      label: "investing",
-                      color: "darkgreen",
-                    },
-                    { id: 1, value: 10, label: "saving", color: "lightgreen" },
-                    { id: 2, value: 20, label: "spending", color: "navy" },
-                    { id: 3, value: 30, label: "rent", color: "red" },
-                    { id: 4, value: 10, label: "grocery", color: "pink" },
-                  ],
+                  data: pieData,
                   innerRadius: 30,
                   outerRadius: 100,
                   paddingAngle: 5,
