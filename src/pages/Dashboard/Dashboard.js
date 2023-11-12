@@ -23,12 +23,23 @@ export function Dashboard() {
     <>
       <div className="grid grid-rows-3 md:grid-cols-3 md:grid-rows-2 h-[1000px] md:h-[550px] gap-4">
         <div className={`md:col-span-2 md:row-span-2 ${boxStyles}`}>
-          <h1
-            onClick={() => setPopulatingLineData(!populatingLineData)}
-            className="text-2xl font-header cursor-pointer w-max"
-          >
-            net
-          </h1>
+          <div className="flex justify-between">
+            <h1 className="text-2xl font-header w-max">net</h1>
+            <div className="flex space-x-2">
+              <button
+                onClick={() => setPopulatingLineData(!populatingLineData)}
+              >
+                update
+              </button>
+              <button
+                onClick={() =>
+                  setNetData((netData) => [...netData, { id: netData.length }])
+                }
+              >
+                add
+              </button>
+            </div>
+          </div>
 
           {populatingLineData ? (
             <div style={{ height: "90%" }}>
@@ -60,7 +71,7 @@ export function Dashboard() {
               xAxis={[
                 {
                   dataKey: "id",
-                  valueFormatter: (v) => v.toString(),
+                  valueFormatter: (date) => date.toString(),
                 },
               ]}
               series={Object.keys(keyToLabel).map((key) => ({
