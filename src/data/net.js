@@ -89,12 +89,18 @@ export const keyToLabel = {
   investing: "Investing",
   savings: "Savings",
   checking: "Cash",
-  net: "Net",
+  // net: "Net",
 };
 
 export const colors = {
-  net: "darkgreen",
-  checking: "navy",
-  savings: "steelblue",
-  investing: "aliceblue",
+  // net: "#03045e",
+  checking: "#fdf0d5",
+  savings: "#0a9396",
+  investing: "#003049",
+};
+
+export const stackStrategy = {
+  stack: "total",
+  area: true,
+  stackOffset: "none", // To stack 0 on top of others
 };

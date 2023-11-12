@@ -4,7 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 
 import { myContext } from "../../contexts/LineChartContext";
 
-import { lineColumns, keyToLabel, colors } from "../../data/net";
+import { lineColumns, keyToLabel, colors, stackStrategy } from "../../data/net";
 import { pieColumns } from "../../data/expenses";
 
 export function Dashboard() {
@@ -69,6 +69,7 @@ export function Dashboard() {
                 color: colors[key],
                 showMark: false,
                 curve: "linear",
+                ...stackStrategy,
               }))}
               dataset={netData}
               sx={{
