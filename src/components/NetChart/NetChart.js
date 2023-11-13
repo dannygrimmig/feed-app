@@ -94,6 +94,14 @@ export function NetChart({ className }) {
 
       {isEditing ? (
         <div style={{ height: "85%" }}>
+          <button
+            onClick={() =>
+              setNetData((netData) => [...netData, { id: createNewId() }])
+            }
+          >
+            add row
+          </button>
+
           <DataGrid
             editMode="row"
             rows={netData}
@@ -116,16 +124,6 @@ export function NetChart({ className }) {
               setNetData(updatedLineChartDataState);
             }}
           />
-
-          <div className="flex justify-end">
-            <button
-              onClick={() =>
-                setNetData((netData) => [...netData, { id: createNewId() }])
-              }
-            >
-              add row
-            </button>
-          </div>
         </div>
       ) : (
         <LineChart

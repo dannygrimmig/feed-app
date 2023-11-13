@@ -9,11 +9,20 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { Expenses } from "./pages/Expenses/Expenses";
 import { Savings } from "./pages/Savings/Savings";
+import { ContextProvider } from "./contexts/AppContext";
+
+const AppWrapper = () => {
+  return (
+    <ContextProvider>
+      <App />
+    </ContextProvider>
+  );
+};
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <AppWrapper />,
     errorElement: <ErrorPage />,
     children: [
       {
