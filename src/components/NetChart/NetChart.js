@@ -25,6 +25,10 @@ export function NetChart({ className }) {
       : setNetData(netData.filter((row) => row.id !== id));
   };
 
+  const createNewId = () => {
+    return netData[netData.length - 1].id + 1;
+  };
+
   const lineColumns = [
     {
       field: "month",
@@ -116,7 +120,7 @@ export function NetChart({ className }) {
           <div className="flex justify-end">
             <button
               onClick={() =>
-                setNetData((netData) => [...netData, { id: netData.length }])
+                setNetData((netData) => [...netData, { id: createNewId() }])
               }
             >
               add row
