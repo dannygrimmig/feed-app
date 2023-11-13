@@ -1,15 +1,84 @@
 import * as React from "react";
+
 import { LineChart } from "@mui/x-charts";
 import { DataGrid } from "@mui/x-data-grid";
+import { GridActionsCellItem } from "@mui/x-data-grid";
+import DeleteIcon from "@mui/icons-material/DeleteOutlined";
 
 import { myContext } from "../../contexts/AppContext";
-
-import { lineColumns, keyToLabel, colors, stackStrategy } from "../../data/net";
 import { DashboardBoxHeader } from "../DashboardBoxHeader/DashboardBoxHeader";
+
+import {
+  keyToLabel,
+  colors,
+  stackStrategy,
+  emptyLineChartData,
+} from "../../data/net";
 
 export function NetChart({ className }) {
   const [isEditing, setIsEditing] = React.useState(false);
   const { netData, setNetData } = React.useContext(myContext);
+
+  const handleDeleteClick = (id) => () => {
+    netData.length === 1
+      ? setNetData(emptyLineChartData)
+      : setNetData(netData.filter((row) => row.id !== id));
+  };
+
+  const lineColumns = [
+    {
+      field: "month",
+      headerClassName: "font-header",
+      headerName: "Month",
+      type: "string",
+      align: "left",
+      headerAlign: "left",
+      editable: true,
+    },
+    {
+      field: "checking",
+      headerName: "Checking",
+      headerClassName: "font-header",
+      type: "number",
+      align: "left",
+      headerAlign: "left",
+      editable: true,
+    },
+    {
+      field: "savings",
+      headerName: "Savings",
+      headerClassName: "font-header",
+      type: "number",
+      align: "left",
+      headerAlign: "left",
+      editable: true,
+    },
+    {
+      field: "investing",
+      headerName: "Investing",
+      headerClassName: "font-header",
+      type: "number",
+      align: "left",
+      headerAlign: "left",
+      editable: true,
+    },
+    {
+      field: "actions",
+      type: "actions",
+      headerName: "Actions",
+      headerAlign: "center",
+      align: "center",
+      getActions: ({ id }) => {
+        return [
+          <GridActionsCellItem
+            icon={<DeleteIcon />}
+            label="Delete"
+            onClick={handleDeleteClick(id)}
+          />,
+        ];
+      },
+    },
+  ];
 
   return (
     <div className={`${className}`}>
