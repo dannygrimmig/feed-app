@@ -34,7 +34,12 @@ export function NetChart({ className }) {
       field: "month",
       headerClassName: "font-header",
       headerName: "Month",
-      type: "string",
+      type: "date",
+      valueGetter: (id) => {
+        const date = new Date(id.row.month);
+        return date;
+      },
+      flex: 1,
       align: "left",
       headerAlign: "left",
       editable: true,
@@ -43,6 +48,7 @@ export function NetChart({ className }) {
       field: "checking",
       headerName: "Checking",
       headerClassName: "font-header",
+      flex: 1,
       type: "number",
       align: "left",
       headerAlign: "left",
@@ -52,6 +58,7 @@ export function NetChart({ className }) {
       field: "savings",
       headerName: "Savings",
       headerClassName: "font-header",
+      flex: 1,
       type: "number",
       align: "left",
       headerAlign: "left",
@@ -61,6 +68,7 @@ export function NetChart({ className }) {
       field: "investing",
       headerName: "Investing",
       headerClassName: "font-header",
+      flex: 1,
       type: "number",
       align: "left",
       headerAlign: "left",
@@ -68,6 +76,7 @@ export function NetChart({ className }) {
     },
     {
       field: "actions",
+      flex: 1,
       type: "actions",
       headerName: "Actions",
       headerAlign: "center",
@@ -130,7 +139,16 @@ export function NetChart({ className }) {
           xAxis={[
             {
               dataKey: "id",
-              valueFormatter: (date) => date.toString(),
+              valueFormatter: (id) => {
+                const date = new Date(netData[id]?.month).toLocaleDateString(
+                  "en-US"
+                );
+                if (date !== "Invalid Date") {
+                  return date;
+                } else {
+                  return "";
+                }
+              },
             },
           ]}
           series={Object.keys(keyToLabel).map((key) => ({
