@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { NavBar } from "./components/NavBar/NavBar";
-import { ContextProvider } from "./contexts/LineChartContext";
+import { ContextProvider } from "./contexts/AppContext";
 
 function App() {
   const [darkMode, setDarkMode] = React.useState(false);

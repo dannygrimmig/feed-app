@@ -2,7 +2,7 @@ import * as React from "react";
 import { LineChart, PieChart, BarChart } from "@mui/x-charts";
 import { DataGrid } from "@mui/x-data-grid";
 
-import { myContext } from "../../contexts/LineChartContext";
+import { myContext } from "../../contexts/AppContext";
 
 import { lineColumns, keyToLabel, colors, stackStrategy } from "../../data/net";
 import { pieColumns } from "../../data/expenses";
@@ -29,7 +29,7 @@ export function Dashboard() {
               <button
                 onClick={() => setPopulatingLineData(!populatingLineData)}
               >
-                update
+                {populatingLineData ? "update" : "complete"}
               </button>
               <button
                 onClick={() =>
