@@ -140,9 +140,9 @@ export function NetChart({ className }) {
             {
               dataKey: "id",
               valueFormatter: (id) => {
-                const date = new Date(netData[id]?.month).toLocaleDateString(
-                  "en-US"
-                );
+                const date = new Date(
+                  netData.find((row) => row.id === id)?.month
+                ).toLocaleDateString("en-US");
                 if (date !== "Invalid Date") {
                   return date;
                 } else {
