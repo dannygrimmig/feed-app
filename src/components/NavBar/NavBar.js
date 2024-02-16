@@ -17,7 +17,7 @@ export function NavBar(props) {
     <div className={navStyles}>
       <div>
         <h1 className="text-2xl font-header">
-          <Link to={"/"}>Financial Portfolio</Link>
+          <Link to={"/"}>App</Link>
         </h1>
 
         <div className="flex space-x-4">
@@ -35,7 +35,10 @@ export function NavBar(props) {
         </div>
       </div>
 
-      <div className="cursor-pointer" onClick={() => setDarkMode(!darkMode)}>
+      <div
+        className="cursor-pointer hover:scale-125 transition"
+        onClick={() => setDarkMode(!darkMode)}
+      >
         {darkMode ? <LightModeIcon /> : <NightsStayIcon />}
       </div>
     </div>

@@ -11,7 +11,7 @@ import { DashboardBoxHeader } from "../../components/DashboardBoxHeader/Dashboar
 export function Home() {
   const lightBoxStyles = "from-sky-200 to-sky-300 shadow-slate-800";
   const darkBoxStyles = "dark:from-sky-700 dark:to-sky-800 dark:shadow-sky-600";
-  const boxStyles = `rounded-lg p-4 border border-slate-800 bg-gradient-to-r shadow-[-5px_5px] hover:shadow-[-8px_8px] hover:-mr-1 hover:-mt-1 ${lightBoxStyles} ${darkBoxStyles} `;
+  const boxStyles = `rounded-lg p-4 border border-slate-800 bg-gradient-to-r shadow-[-5px_5px] ${lightBoxStyles} ${darkBoxStyles} `;
 
   const [populatingPieData, setPopulatingPieData] = React.useState(false);
   const [populatingBarData, setPopulatingBarData] = React.useState(false);

@@ -10,7 +10,7 @@ export function DashboardBoxHeader(props) {
       <h1 className="text-2xl font-header w-max">{header}</h1>
 
       <button
-        className={`${isEditing && "font-header"}`}
+        className={`${isEditing && "font-header"} hover:scale-125 transition`}
         onClick={() => setIsEditing(!isEditing)}
       >
         {isEditing ? <DoneOutlineOutlinedIcon /> : <EditOutlinedIcon />}

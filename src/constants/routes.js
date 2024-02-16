@@ -1,13 +1,13 @@
-import { Expenses } from "../pages/Expenses/Expenses";
-import { Savings } from "../pages/Savings/Savings";
+import { One } from "../pages/One/One";
+import { Two } from "../pages/Two/Two";
 
 export const ROUTES = [
   {
-    path: "expenses",
-    element: <Expenses />,
+    path: "one",
+    element: <One />,
   },
   {
-    path: "savings",
-    element: <Savings />,
+    path: "two",
+    element: <Two />,
   },
 ];
