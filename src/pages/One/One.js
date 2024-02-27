@@ -1,21 +1,25 @@
 import * as React from "react";
 import { RecipeGrid } from "../../components/RecipeGrid/RecipeGrid";
-import { getRecipesBySearch, getRecipesByTag } from "../../api/getRecipes";
-import { FILTERS, MEAL_FILTERS } from "../../constants/filters";
+import { getRecipesBySearch, getRecipesByTags } from "../../api/getRecipes";
+import { MEAL_FILTERS } from "../../constants/filters";
 import { Filter } from "../../components/Filter/Filter";
 import { RECIPES } from "../../data/recipes";
 
 export function One() {
-  const [recipes, setRecipes] = React.useState(RECIPES);
+  const [activeQuery, setActiveQuery] = React.useState("");
+  const [activeFilters, setActiveFilters] = React.useState([]);
 
-  const [displayedRecipes, setDisplayedRecipes] = React.useState(recipes);
+  const [queriedRecipes, setQueriedRecipes] = React.useState(RECIPES);
+  const [filteredRecipes, setFilteredRecipes] = React.useState(RECIPES);
 
-  const [displayedFilters, setDisplayedFilters] = React.useState(MEAL_FILTERS);
+  React.useEffect(() => {
+    setQueriedRecipes(getRecipesBySearch(RECIPES, activeQuery));
+  }, [activeQuery]);
 
-  /* 
-    - breakfast,lunch, dinner, dessert
-    - go to blog see their tags (rachel mans)
-  */
+  React.useEffect(() => {
+    console.log(activeFilters);
+    setFilteredRecipes(getRecipesByTags(queriedRecipes, activeFilters));
+  }, [queriedRecipes, activeFilters]);
 
   return (
     <div>
@@ -26,37 +30,31 @@ export function One() {
           className="flex-2 border px-4 py-2 rounded focus:outline-slate-500"
           onChange={(e) => {
             const query = e.target.value;
-            if (!!query) {
-              setDisplayedRecipes(getRecipesBySearch(recipes, query));
-            } else {
-              setDisplayedRecipes(RECIPES);
-            }
+            !!query ? setActiveQuery(query) : setActiveQuery("");
           }}
         />
 
         <div className="flex-1 flex gap-2">
-          {displayedFilters.map((filter) => (
+          {MEAL_FILTERS.map((filter) => (
             <Filter
               text={filter}
               key={filter}
               onClick={(isActive) => {
-                if (isActive) {
-                  setDisplayedRecipes(
-                    getRecipesByTag(displayedRecipes, filter)
-                  );
-                } else {
-                  setDisplayedRecipes(RECIPES);
-                }
+                isActive
+                  ? setActiveFilters(["breakfast"])
+                  : setActiveFilters((prevFilters) =>
+                      prevFilters.filter((prev) => prev !== filter)
+                    );
               }}
             />
           ))}
         </div>
       </div>
 
-      {!!displayedRecipes ? (
+      {!!filteredRecipes ? (
         <RecipeGrid
-          recipes={displayedRecipes}
-          className={"md:grid-cols-2 lg:grid-cols-4"}
+          recipes={filteredRecipes}
+          className={"md:grid-cols-3 lg:grid-cols-4"}
         />
       ) : (
         <p>Make a search fool</p>
