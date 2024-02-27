@@ -12,18 +12,18 @@ export function NavBar(props) {
   return (
     <ShadowBox
       outerClassName="mb-6 sticky top-0 z-10 "
-      innerClassName="bg-brand-25 dark:bg-brand-50"
+      innerClassName="bg-slate-200 dark:bg-brand-50"
     >
       <div className="rounded-lg flex items-center justify-between px-8 py-4">
         <div>
-          <h1 className="text-2xl font-header">
+          <h1 className="text-2xl font-header font-light">
             <Link to={"/"}>feed</Link>
           </h1>
 
           <div className="flex space-x-4">
             {ROUTES.map(({ path }) => (
               <h3
-                className={`decoration-1 underline-offset-2 ${
+                className={`decoration-1 underline-offset-2 font-light ${
                   path === activeSlug && "underline"
                 }  hover:underline`}
                 onClick={() => setActiveSlug(path)}

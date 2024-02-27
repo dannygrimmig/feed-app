@@ -3,11 +3,11 @@ import { Two } from "../pages/Two/Two";
 
 export const ROUTES = [
   {
-    path: "one",
+    path: "search",
     element: <One />,
   },
   {
-    path: "two",
+    path: "profile",
     element: <Two />,
   },
 ];
