@@ -22,21 +22,13 @@ export function getRecipesBySearch(recipes, query) {
   );
 }
 
+// Recipes by FilterTags
 export function getRecipesByTags(recipes, filters) {
-  //no filters, return recipes
   if (!filters || filters.length === 0) {
     return recipes;
   }
 
-  const toReturn = [];
-  for (const recipe of recipes) {
-    const { tags } = recipe;
-    for (const tag of tags) {
-      if (filters.includes(tag)) {
-        toReturn.push(recipe);
-        break;
-      }
-    }
-  }
-  return toReturn;
+  return recipes.filter(({ tags }) =>
+    tags.some((tag) => filters.includes(tag))
+  );
 }

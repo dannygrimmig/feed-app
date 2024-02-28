@@ -1,13 +1,13 @@
-import { One } from "../pages/One/One";
-import { Two } from "../pages/Two/Two";
+import { Search } from "../pages/Search/Search";
+import { Profile } from "../pages/Profile/Profile";
 
 export const ROUTES = [
   {
     path: "search",
-    element: <One />,
+    element: <Search />,
   },
   {
     path: "profile",
-    element: <Two />,
+    element: <Profile />,
   },
 ];

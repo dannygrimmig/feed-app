@@ -3,11 +3,9 @@ import { getRecipesByUserId } from "../../api/getRecipes";
 import { RecipeGrid } from "../../components/RecipeGrid/RecipeGrid";
 import { myContext } from "../../contexts/AppContext";
 
-export function Two() {
+export function Profile() {
   const { currentChef } = React.useContext(myContext);
-  const [displayedRecipes, setDisplayedRecipes] = React.useState(
-    getRecipesByUserId(currentChef)
-  );
+  const displayedRecipes = getRecipesByUserId(currentChef);
 
   return (
     <div>

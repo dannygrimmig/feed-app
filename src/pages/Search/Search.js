@@ -5,32 +5,31 @@ import { MEAL_FILTERS } from "../../constants/filters";
 import { Filter } from "../../components/Filter/Filter";
 import { RECIPES } from "../../data/recipes";
 
-export function One() {
-  const [activeQuery, setActiveQuery] = React.useState("");
+export function Search() {
+  // managed
+  const [queriedRecipes, setQueriedRecipes] = React.useState(RECIPES);
   const [activeFilters, setActiveFilters] = React.useState([]);
 
-  const [queriedRecipes, setQueriedRecipes] = React.useState(RECIPES);
+  // derived
   const [filteredRecipes, setFilteredRecipes] = React.useState(RECIPES);
 
   React.useEffect(() => {
-    setQueriedRecipes(getRecipesBySearch(RECIPES, activeQuery));
-  }, [activeQuery]);
-
-  React.useEffect(() => {
-    console.log(activeFilters);
     setFilteredRecipes(getRecipesByTags(queriedRecipes, activeFilters));
   }, [queriedRecipes, activeFilters]);
 
   return (
     <div>
-      <div className="flex space-x-4">
+      <div className="flex space-x-4 mb-2">
         <input
           type="search"
-          placeholder="search"
+          placeholder="search recipes"
           className="flex-2 border px-4 py-2 rounded focus:outline-slate-500"
-          onChange={(e) => {
-            const query = e.target.value;
-            !!query ? setActiveQuery(query) : setActiveQuery("");
+          onChange={(event) => {
+            const query = event.target.value;
+
+            setQueriedRecipes(
+              getRecipesBySearch(RECIPES, !!query ? query : "")
+            );
           }}
         />
 
@@ -41,7 +40,7 @@ export function One() {
               key={filter}
               onClick={(isActive) => {
                 isActive
-                  ? setActiveFilters(["breakfast"])
+                  ? setActiveFilters([...activeFilters, filter])
                   : setActiveFilters((prevFilters) =>
                       prevFilters.filter((prev) => prev !== filter)
                     );

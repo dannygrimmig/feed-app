@@ -4,6 +4,7 @@ import NightsStayIcon from "@mui/icons-material/NightsStay";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { ROUTES } from "../../constants/routes";
 import { ShadowBox } from "../ShadowBox/ShadowBox";
+import LocalDiningIcon from "@mui/icons-material/LocalDining";
 
 export function NavBar(props) {
   // imported
@@ -16,8 +17,10 @@ export function NavBar(props) {
     >
       <div className="rounded-lg flex items-center justify-between px-8 py-4">
         <div>
-          <h1 className="text-2xl font-header font-light">
-            <Link to={"/"}>feed</Link>
+          <h1 className="text-2xl font-header">
+            <Link to={"/"} className="flex gap-2 items-center w-max">
+              <LocalDiningIcon /> feed
+            </Link>
           </h1>
 
           <div className="flex space-x-4">
