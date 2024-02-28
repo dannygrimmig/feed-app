@@ -19,9 +19,14 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
+  function logOut() {
+    return auth.signOut();
+  }
+
   const value = {
     currentUser,
     setCurrentUser,
+    logOut,
   };
 
   return (

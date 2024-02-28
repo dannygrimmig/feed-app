@@ -4,10 +4,20 @@ import NightsStayIcon from "@mui/icons-material/NightsStay";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { ShadowBox } from "../ShadowBox/ShadowBox";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
+import { UseAuth } from "../../contexts/AuthContext";
 
 export function NavBar(props) {
   // imported
   const { routes, darkMode, setDarkMode, activeSlug, setActiveSlug } = props;
+  const { logOut } = UseAuth();
+
+  async function handleLogOut() {
+    try {
+      await logOut();
+    } catch {
+      console.log("failed to logout");
+    }
+  }
 
   return (
     <ShadowBox
@@ -37,11 +47,14 @@ export function NavBar(props) {
           </div>
         </div>
 
-        <div
-          className="cursor-pointer hover:scale-125 transition"
-          onClick={() => setDarkMode(!darkMode)}
-        >
-          {darkMode ? <LightModeIcon /> : <NightsStayIcon />}
+        <div className="flex gap-2 items-center">
+          <div
+            className="cursor-pointer hover:scale-125 transition"
+            onClick={() => setDarkMode(!darkMode)}
+          >
+            {darkMode ? <LightModeIcon /> : <NightsStayIcon />}
+          </div>
+          <button onClick={() => handleLogOut()}>log out</button>
         </div>
       </div>
     </ShadowBox>

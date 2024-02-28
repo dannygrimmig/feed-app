@@ -5,10 +5,11 @@ import { myContext } from "./contexts/AppContext";
 import { Home } from "./pages/Home/Home";
 import { ROUTES } from "./constants/routes";
 import { LogIn } from "./pages/Login/Login";
+import { UseAuth } from "./contexts/AuthContext";
 
 function App() {
-  const { currentChef } = React.useContext(myContext);
-  return !!currentChef ? LoggedInApp() : NotLoggedInApp();
+  const { currentUser } = UseAuth();
+  return !!currentUser ? LoggedInApp() : NotLoggedInApp();
 }
 
 function LoggedInApp() {
