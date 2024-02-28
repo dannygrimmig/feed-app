@@ -1,24 +1,41 @@
 import * as React from "react";
+import { UseAuth } from "../../contexts/AuthContext";
+import { createUserWithEmailAndPassword } from "@firebase/auth";
+import { auth } from "../../firebase";
 
 export function LogIn() {
+  // imported
+  const { currentUser, setCurrentUser } = UseAuth();
+
   // managed
   const emailRef = React.useRef();
   const passwordRef = React.useRef();
   const [alert, setAlert] = React.useState();
+  const [isLoading, setIsLoading] = React.useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    setAlert();
+    setIsLoading(true);
+
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    if (email.length <= 0 || password.length <= 0) {
-      setAlert("too short");
-    } else {
-      setAlert();
-    }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        setCurrentUser(userCredential.user);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        setAlert(errorCode);
+        setIsLoading(false);
+      });
   }
+
   return (
     <div>
+      {<p>current user: {!!currentUser && currentUser.email}</p>}
       <form className="gap-4" onSubmit={handleSubmit}>
         <input
           ref={emailRef}
@@ -28,11 +45,15 @@ export function LogIn() {
         />
         <input
           ref={passwordRef}
-          type="text"
+          type="password"
           placeholder="password"
           className="border rounded px-2 py-1"
         />
-        <button type="submit" className="border rounded px-2 py-1">
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="border rounded px-2 py-1"
+        >
           sign up
         </button>
 

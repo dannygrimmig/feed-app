@@ -8,12 +8,15 @@ import App from "./App";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import { ContextProvider } from "./contexts/AppContext";
 import { ROUTES } from "./constants/routes";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const AppWrapper = () => {
   return (
-    <ContextProvider>
-      <App />
-    </ContextProvider>
+    <AuthProvider>
+      <ContextProvider>
+        <App />
+      </ContextProvider>
+    </AuthProvider>
   );
 };
 

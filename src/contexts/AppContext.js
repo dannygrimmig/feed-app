@@ -7,7 +7,7 @@ export const myContext = React.createContext();
 export const ContextProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useLocalStorage("darkMode", false);
   const [netData, setNetData] = useLocalStorage("netData", emptyLineChartData);
-  const currentChef = "dannygrimmig";
+  const currentChef = "";
 
   return (
     <myContext.Provider
