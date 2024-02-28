@@ -1,14 +1,13 @@
 import * as React from "react";
-import { UseAuth } from "../../contexts/AuthContext";
-import { createUserWithEmailAndPassword } from "@firebase/auth";
+import { useAuth } from "../../contexts/AuthContext";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "@firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
-export function LogIn() {
-  // imported
-  const { setCurrentUser } = UseAuth();
-  const navigate = useNavigate();
-
+export function Authentication() {
   // managed
   const emailRef = React.useRef();
   const passwordRef = React.useRef();
@@ -16,29 +15,51 @@ export function LogIn() {
   const [alert, setAlert] = React.useState();
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const [isLogIn, setIsLogIn] = React.useState(false);
+  const [isLogIn, setIsLogIn] = React.useState(true);
 
   // derived
   const actionText = isLogIn ? "Log In" : "Sign Up";
 
+  // Hooks
+  const { setCurrentUser } = useAuth();
+  const navigate = useNavigate();
+
   async function handleSubmit(e) {
     e.preventDefault();
+
     setAlert();
     setIsLoading(true);
 
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        navigate("/");
-        setCurrentUser(userCredential.user);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        setAlert(error.code);
-        setIsLoading(false);
-      });
+    // log in
+    if (isLogIn) {
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          navigate("/");
+          setCurrentUser(userCredential.user);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          setAlert(error.code);
+          setIsLoading(false);
+        });
+    }
+
+    // sign up
+    else {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          navigate("/");
+          setCurrentUser(userCredential.user);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          setAlert(error.code);
+          setIsLoading(false);
+        });
+    }
   }
 
   return (
@@ -80,7 +101,10 @@ export function LogIn() {
           <p>{isLogIn ? "Don't have" : "Already have"} an account?</p>
 
           <button
-            onClick={() => setIsLogIn(!isLogIn)}
+            onClick={() => {
+              setAlert();
+              setIsLogIn(!isLogIn);
+            }}
             className="p-0 m-0 underline w-max decoration-1 underline-offset-2"
           >
             {isLogIn ? "Create an account" : "Log in"}
@@ -88,7 +112,7 @@ export function LogIn() {
         </div>
       </div>
 
-      <div className="bg-slate-500 sm:col-span-5 lg:col-span-7"></div>
+      <div className="bg-sky-900 sm:col-span-5 lg:col-span-7"></div>
     </div>
   );
 }

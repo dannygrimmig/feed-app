@@ -3,7 +3,7 @@ import { auth } from "../firebase";
 
 const AuthContext = React.createContext();
 
-export function UseAuth() {
+export function useAuth() {
   return React.useContext(AuthContext);
 }
 
@@ -19,14 +19,9 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  function logOut() {
-    return auth.signOut();
-  }
-
   const value = {
     currentUser,
     setCurrentUser,
-    logOut,
   };
 
   return (

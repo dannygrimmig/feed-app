@@ -1,15 +1,21 @@
 import * as React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { NavBar } from "./components/NavBar/NavBar";
-import { myContext } from "./contexts/AppContext";
+import { ContextProvider, myContext } from "./contexts/AppContext";
 import { Home } from "./pages/Home/Home";
 import { ROUTES } from "./constants/routes";
-import { LogIn } from "./pages/Login/Login";
-import { UseAuth } from "./contexts/AuthContext";
+import { Authentication } from "./pages/Authentication/Authentication";
+import { useAuth } from "./contexts/AuthContext";
 
 function App() {
-  const { currentUser } = UseAuth();
-  return !!currentUser ? LoggedInApp() : NotLoggedInApp();
+  const { currentUser } = useAuth();
+  return !!currentUser ? (
+    <ContextProvider>
+      <LoggedInApp />
+    </ContextProvider>
+  ) : (
+    <NotLoggedInApp />
+  );
 }
 
 function LoggedInApp() {
@@ -50,7 +56,7 @@ function NotLoggedInApp() {
   return (
     <div className="App">
       <div className="Window min-h-screen font-body text-stone-800">
-        <LogIn />
+        <Authentication />
       </div>
     </div>
   );

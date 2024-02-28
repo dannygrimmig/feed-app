@@ -1,11 +1,11 @@
 import * as React from "react";
 import { getRecipesByUserId } from "../../api/getRecipes";
 import { RecipeGrid } from "../../components/RecipeGrid/RecipeGrid";
-import { UseAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 export function Profile() {
   //imported
-  const { currentUser } = UseAuth();
+  const { currentUser } = useAuth();
 
   //derived
   const displayedRecipes = getRecipesByUserId(currentUser.email);

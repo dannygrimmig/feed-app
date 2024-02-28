@@ -4,16 +4,18 @@ import NightsStayIcon from "@mui/icons-material/NightsStay";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { ShadowBox } from "../ShadowBox/ShadowBox";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
-import { UseAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { logOut } from "../../utils/authentication";
 
 export function NavBar(props) {
   // imported
   const { routes, darkMode, setDarkMode, activeSlug, setActiveSlug } = props;
-  const { logOut } = UseAuth();
+  const navigate = useNavigate();
 
   async function handleLogOut() {
     try {
       await logOut();
+      navigate("/");
     } catch {
       console.log("failed to logout");
     }
