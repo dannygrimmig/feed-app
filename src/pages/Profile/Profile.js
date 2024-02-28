@@ -4,7 +4,10 @@ import { RecipeGrid } from "../../components/RecipeGrid/RecipeGrid";
 import { myContext } from "../../contexts/AppContext";
 
 export function Profile() {
+  //imported
   const { currentChef } = React.useContext(myContext);
+
+  //derived
   const displayedRecipes = getRecipesByUserId(currentChef);
 
   return (

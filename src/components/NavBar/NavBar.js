@@ -2,13 +2,12 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import NightsStayIcon from "@mui/icons-material/NightsStay";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import { ROUTES } from "../../constants/routes";
 import { ShadowBox } from "../ShadowBox/ShadowBox";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 
 export function NavBar(props) {
   // imported
-  const { darkMode, setDarkMode, activeSlug, setActiveSlug } = props;
+  const { routes, darkMode, setDarkMode, activeSlug, setActiveSlug } = props;
 
   return (
     <ShadowBox
@@ -24,7 +23,7 @@ export function NavBar(props) {
           </h1>
 
           <div className="flex space-x-4">
-            {ROUTES.map(({ path }) => (
+            {routes.map(({ path }) => (
               <h3
                 className={`decoration-1 underline-offset-2 font-light ${
                   path === activeSlug && "underline"
