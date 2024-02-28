@@ -7,7 +7,7 @@ import {
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { Search } from "../Search/Search";
-import { RECIPES } from "../../data/recipes";
+import { DEMO_RECIPES } from "../../data/recipes";
 
 export function Authentication() {
   // managed
@@ -115,8 +115,8 @@ export function Authentication() {
       </div>
 
       <div className="bg-sky-200 sm:col-span-6 lg:col-span-7 p-8 flex flex-col gap-8">
-        <h2 className="text-5xl font-header text-slate-800">feed</h2>
-        <Search initialRecipes={[RECIPES[0], RECIPES[1], RECIPES[2]]} />
+        <h2 className="text-5xl font-header text-slate-800">feed.</h2>
+        <Search initialRecipes={DEMO_RECIPES} />
       </div>
     </div>
   );

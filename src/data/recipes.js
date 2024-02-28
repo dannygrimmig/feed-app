@@ -75,3 +75,39 @@ function makeRecipes() {
 }
 
 export const RECIPES = makeRecipes();
+
+export const DEMO_RECIPES = [
+  {
+    id: 1,
+    name: "Eggs",
+    image:
+      "https://www.allrecipes.com/thmb/_tlTl7zfu2mCZzzuf9r8WOW-31U=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/256007-best-scrambled-eggs-ddmfs-3X4-0031-ff526aac78f24031a5f947a546918a39.jpg",
+    chef: "dannygrimmig",
+    stars: 3,
+    serves: 3,
+    time: 10,
+    tags: ["breakfast"],
+  },
+  {
+    id: 2,
+    name: "Chicken Ceaser Wrap",
+    image:
+      "https://cookingwithcocktailrings.com/wp-content/uploads/2022/07/Grilled-Chicken-Caesar-Wrap-46.jpg",
+    chef: "chrisgrimmig",
+    stars: 5,
+    serves: 1,
+    time: 25,
+    tags: ["lunch"],
+  },
+  {
+    id: 3,
+    name: "Cacio Pepe",
+    image:
+      "https://www.sipandfeast.com/wp-content/uploads/2019/08/bucatini-cacio-e-pepe-recipe-snippet.jpg",
+    chef: "bengrimmig",
+    stars: 4,
+    serves: 5,
+    time: 50,
+    tags: ["lunch", "dinner"],
+  },
+];
