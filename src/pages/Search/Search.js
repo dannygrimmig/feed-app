@@ -3,15 +3,14 @@ import { RecipeGrid } from "../../components/RecipeGrid/RecipeGrid";
 import { getRecipesBySearch, getRecipesByTags } from "../../api/getRecipes";
 import { MEAL_FILTERS } from "../../constants/filters";
 import { Filter } from "../../components/Filter/Filter";
-import { RECIPES } from "../../data/recipes";
 
-export function Search() {
+export function Search({ initialRecipes }) {
   // managed
-  const [queriedRecipes, setQueriedRecipes] = React.useState(RECIPES);
+  const [queriedRecipes, setQueriedRecipes] = React.useState(initialRecipes);
   const [activeFilters, setActiveFilters] = React.useState([]);
 
   // derived
-  const [filteredRecipes, setFilteredRecipes] = React.useState(RECIPES);
+  const [filteredRecipes, setFilteredRecipes] = React.useState(initialRecipes);
 
   React.useEffect(() => {
     setFilteredRecipes(getRecipesByTags(queriedRecipes, activeFilters));
@@ -28,12 +27,12 @@ export function Search() {
             const query = event.target.value;
 
             setQueriedRecipes(
-              getRecipesBySearch(RECIPES, !!query ? query : "")
+              getRecipesBySearch(initialRecipes, !!query ? query : "")
             );
           }}
         />
 
-        <div className="flex-1 flex gap-2">
+        <div className="flex-1 flex gap-2 overflow-x-scroll">
           {MEAL_FILTERS.map((filter) => (
             <Filter
               text={filter}
@@ -53,7 +52,7 @@ export function Search() {
       {!!filteredRecipes ? (
         <RecipeGrid
           recipes={filteredRecipes}
-          className={"md:grid-cols-3 lg:grid-cols-4"}
+          className={"grid-cols-2 lg:grid-cols-3"}
         />
       ) : (
         <p>Make a search fool</p>
