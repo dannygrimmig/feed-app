@@ -12,6 +12,8 @@ export function Search(props) {
     onRecipeClick = () => {},
   } = props;
 
+  const { maxRecipes = initialRecipes.length } = props;
+
   // managed
   const [queriedRecipes, setQueriedRecipes] = React.useState(initialRecipes);
   const [activeFilters, setActiveFilters] = React.useState([]);
@@ -62,6 +64,7 @@ export function Search(props) {
         <RecipeGrid
           recipes={filteredRecipes}
           className={gridClassName}
+          maxRecipes={maxRecipes}
           onRecipeClick={(recipe) => onRecipeClick(recipe)}
         />
       ) : (

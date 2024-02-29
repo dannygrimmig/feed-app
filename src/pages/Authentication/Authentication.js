@@ -7,7 +7,8 @@ import {
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { Search } from "../Search/Search";
-import { DEMO_RECIPES } from "../../data/recipes";
+import { DEMO_RECIPES, RECIPES } from "../../data/recipes";
+import { ShadowBox } from "../../components/ShadowBox/ShadowBox";
 
 export function Authentication() {
   // managed
@@ -68,7 +69,12 @@ export function Authentication() {
   return (
     <div className="grid sm:grid-cols-10 min-h-screen">
       <div className="sm:col-span-4 lg:col-span-3 h-screen flex flex-col gap-8 justify-center px-4 sm:sticky top-0">
-        <h1 className="text-5xl">{actionText}</h1>
+        <div className="flex justify-between">
+          <h1 className="text-5xl">{actionText}</h1>
+          <h2 className="text-5xl font-header text-slate-800 mb-2 sm:invisible">
+            feed.
+          </h2>
+        </div>
 
         <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
           {!!alert && <p className="px-2 py-1 bg-red-400 rounded">{alert}</p>}
@@ -99,7 +105,6 @@ export function Authentication() {
             {actionText}
           </button>
         </form>
-
         <div className="pt-4 border-t">
           <p>{isLogIn ? "Don't have" : "Already have"} an account?</p>
 
@@ -126,7 +131,7 @@ export function Authentication() {
 
         <Search
           initialRecipes={DEMO_RECIPES}
-          recipesToQueryFrom={DEMO_RECIPES}
+          recipesToQueryFrom={RECIPES}
           gridClassName={"lg:grid-cols-3"}
           onRecipeClick={(recipe) =>
             setViewRecipeBadge(
@@ -136,7 +141,9 @@ export function Authentication() {
         />
 
         {!!viewRecipeBadge && (
-          <p className="p-2 bg-sky-300 rounded">{viewRecipeBadge}</p>
+          <ShadowBox innerClassName="bg-sky-300 p-2">
+            <p>{viewRecipeBadge}</p>
+          </ShadowBox>
         )}
       </div>
     </div>
