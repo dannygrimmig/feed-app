@@ -66,7 +66,7 @@ export function Authentication() {
 
   return (
     <div className="grid sm:grid-cols-10 min-h-screen">
-      <div className="sm:col-span-4 lg:col-span-3 h-screen flex flex-col gap-8 justify-center px-4">
+      <div className="sm:col-span-4 lg:col-span-3 h-screen flex flex-col gap-8 justify-center px-4 sm:sticky top-0">
         <h1 className="text-5xl">{actionText}</h1>
 
         <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
@@ -115,8 +115,19 @@ export function Authentication() {
       </div>
 
       <div className="bg-sky-200 sm:col-span-6 lg:col-span-7 p-8 flex flex-col gap-8">
-        <h2 className="text-5xl font-header text-slate-800">feed.</h2>
-        <Search initialRecipes={DEMO_RECIPES} />
+        <div>
+          <h2 className="text-5xl font-header text-slate-800 mb-2">feed.</h2>
+          <p>
+            Discover, Create, and Share Delicious Recipes with Friends on Feed –
+            Your Culinary Social Network
+          </p>
+        </div>
+
+        <Search
+          initialRecipes={DEMO_RECIPES}
+          recipesToQueryFrom={DEMO_RECIPES}
+          gridClassName={"lg:grid-cols-3"}
+        />
       </div>
     </div>
   );

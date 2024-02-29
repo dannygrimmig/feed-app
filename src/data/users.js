@@ -3,5 +3,5 @@ export const USERS = [
   "gracedonohue",
   "chrisgrimmig",
   "bengrimmig",
-  "test5@gmail.com",
+  "test@gmail.com",
 ];

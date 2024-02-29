@@ -5,7 +5,13 @@ import { RECIPES } from "../data/recipes";
 export const ROUTES = [
   {
     path: "search",
-    element: <Search initialRecipes={RECIPES} />,
+    element: (
+      <Search
+        initialRecipes={RECIPES}
+        recipesToQueryFrom={RECIPES}
+        gridClassName={"grid-cols-2 lg:grid-cols-4"}
+      />
+    ),
   },
   {
     path: "profile",
