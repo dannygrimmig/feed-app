@@ -5,7 +5,12 @@ import { MEAL_FILTERS } from "../../constants/filters";
 import { Filter } from "../../components/Filter/Filter";
 
 export function Search(props) {
-  const { initialRecipes, recipesToQueryFrom, gridClassName } = props;
+  const {
+    initialRecipes,
+    recipesToQueryFrom,
+    gridClassName,
+    onRecipeClick = () => {},
+  } = props;
 
   // managed
   const [queriedRecipes, setQueriedRecipes] = React.useState(initialRecipes);
@@ -54,7 +59,11 @@ export function Search(props) {
       </div>
 
       {!!filteredRecipes ? (
-        <RecipeGrid recipes={filteredRecipes} className={gridClassName} />
+        <RecipeGrid
+          recipes={filteredRecipes}
+          className={gridClassName}
+          onRecipeClick={(recipe) => onRecipeClick(recipe)}
+        />
       ) : (
         <p>Make a search fool</p>
       )}

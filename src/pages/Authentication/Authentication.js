@@ -15,6 +15,7 @@ export function Authentication() {
   const passwordRef = React.useRef();
 
   const [alert, setAlert] = React.useState();
+  const [viewRecipeBadge, setViewRecipeBadge] = React.useState();
   const [isLoading, setIsLoading] = React.useState(false);
 
   const [isLogIn, setIsLogIn] = React.useState(true);
@@ -127,7 +128,16 @@ export function Authentication() {
           initialRecipes={DEMO_RECIPES}
           recipesToQueryFrom={DEMO_RECIPES}
           gridClassName={"lg:grid-cols-3"}
+          onRecipeClick={(recipe) =>
+            setViewRecipeBadge(
+              `${actionText} to see the full recipe for ${recipe.name}`
+            )
+          }
         />
+
+        {!!viewRecipeBadge && (
+          <p className="p-2 bg-sky-300 rounded">{viewRecipeBadge}</p>
+        )}
       </div>
     </div>
   );
