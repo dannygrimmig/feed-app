@@ -24,9 +24,9 @@ export function NavBar(props) {
   return (
     <ShadowBox
       outerClassName="mb-6 sticky top-0 z-10 "
-      innerClassName="bg-slate-200 dark:bg-brand-50"
+      innerClassName="bg-sky-300"
     >
-      <div className="rounded-lg flex items-center justify-between px-8 py-4">
+      <div className="rounded-lg flex items-center justify-between px-8 py-4  text-slate-800 dark:text-slate-50">
         <div>
           <h1 className="text-2xl font-header">
             <Link to={"/"} className="flex gap-2 items-center w-max">
