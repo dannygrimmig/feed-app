@@ -15,8 +15,8 @@ export function RecipeCard({ recipe, onRecipeClick }) {
 
   return (
     <ShadowBox
-      outerClassName="hover:bg-slate-800 dark:hover:bg-brand-50"
-      innerClassName="bg-white dark:bg-brand-50 hover:translate-x-2 hover:-translate-y-2 transition cursor-pointer"
+      outerClassName="hover:bg-slate-800 dark:hover:bg-sky-900"
+      innerClassName="bg-white dark:bg-slate-100 hover:translate-x-2 hover:-translate-y-2 transition cursor-pointer"
     >
       <div
         className="flex flex-col gap-4"
