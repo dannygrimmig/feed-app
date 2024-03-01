@@ -6,16 +6,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
-import { Dashboard } from "./pages/Dashboard/Dashboard";
-import { Expenses } from "./pages/Expenses/Expenses";
-import { Savings } from "./pages/Savings/Savings";
-import { ContextProvider } from "./contexts/AppContext";
+import { ROUTES } from "./constants/routes";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const AppWrapper = () => {
   return (
-    <ContextProvider>
+    <AuthProvider>
       <App />
-    </ContextProvider>
+    </AuthProvider>
   );
 };
 
@@ -24,20 +22,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <AppWrapper />,
     errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "dashboard",
-        element: <Dashboard />,
-      },
-      {
-        path: "expenses",
-        element: <Expenses />,
-      },
-      {
-        path: "savings",
-        element: <Savings />,
-      },
-    ],
+    children: ROUTES,
   },
 ]);
 

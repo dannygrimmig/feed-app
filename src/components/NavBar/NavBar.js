@@ -2,37 +2,63 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import NightsStayIcon from "@mui/icons-material/NightsStay";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import { ShadowBox } from "../ShadowBox/ShadowBox";
+import LocalDiningIcon from "@mui/icons-material/LocalDining";
+import { useNavigate } from "react-router-dom";
+import { logOut } from "../../utils/authentication";
 
-export function NavBar({ darkMode, setDarkMode }) {
-  const [activeSlug, setActiveSlug] = React.useState("");
-  const links = ["dashboard", "expenses", "savings"];
+export function NavBar(props) {
+  // imported
+  const { routes, darkMode, setDarkMode, activeSlug, setActiveSlug } = props;
+  const navigate = useNavigate();
 
-  const lightNavStyles = "bg-stone-200 shadow-slate-800";
-  const darkNavStyles = "dark:bg-sky-900 dark:shadow-sky-800";
-  const navStyles = `px-8 py-4 rounded-lg mb-6 z-10 sticky top-0 flex items-center justify-between border border-slate-800 shadow-[-5px_5px] ${lightNavStyles} ${darkNavStyles}`;
+  async function handleLogOut() {
+    try {
+      await logOut();
+      navigate("/");
+    } catch {
+      console.log("failed to logout");
+    }
+  }
 
   return (
-    <div className={navStyles}>
-      <div>
-        <h1 className="text-2xl font-header">Financial Portfolio</h1>
+    <ShadowBox
+      outerClassName="mb-6 sticky top-0 z-10 "
+      innerClassName="bg-sky-300"
+    >
+      <div className="rounded-lg flex items-center justify-between px-8 py-4  text-slate-800 dark:text-slate-50">
+        <div>
+          <h1 className="text-2xl font-header">
+            <Link to={"/"} className="flex gap-2 items-center w-max">
+              <LocalDiningIcon /> feed
+            </Link>
+          </h1>
 
-        <div className="flex space-x-4">
-          {links.map((link) => (
-            <h3
-              className={`decoration-1 underline-offset-2 ${
-                link === activeSlug && "underline"
-              }  hover:underline`}
-              onClick={() => setActiveSlug(link)}
-            >
-              <Link to={link}>{link}</Link>
-            </h3>
-          ))}
+          <div className="flex space-x-4">
+            {routes.map(({ path }) => (
+              <h3
+                className={`decoration-1 underline-offset-2 font-light ${
+                  path === activeSlug && "underline"
+                }  hover:underline`}
+                onClick={() => setActiveSlug(path)}
+                key={path}
+              >
+                <Link to={path}>{path}</Link>
+              </h3>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex gap-2 items-center">
+          <div
+            className="cursor-pointer hover:scale-125 transition"
+            onClick={() => setDarkMode(!darkMode)}
+          >
+            {darkMode ? <LightModeIcon /> : <NightsStayIcon />}
+          </div>
+          <button onClick={() => handleLogOut()}>log out</button>
         </div>
       </div>
-
-      <div className="cursor-pointer" onClick={() => setDarkMode(!darkMode)}>
-        {darkMode ? <LightModeIcon /> : <NightsStayIcon />}
-      </div>
-    </div>
+    </ShadowBox>
   );
 }
