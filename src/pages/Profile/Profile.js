@@ -1,21 +1,25 @@
 import * as React from "react";
 import { getRecipesByUserId } from "../../api/getRecipes";
 import { RecipeGrid } from "../../components/RecipeGrid/RecipeGrid";
-import { myContext } from "../../contexts/AppContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 export function Profile() {
-  const { currentChef } = React.useContext(myContext);
-  const displayedRecipes = getRecipesByUserId(currentChef);
+  //imported
+  const { currentUser } = useAuth();
+
+  //derived
+  const displayedRecipes = getRecipesByUserId(currentUser.email);
 
   return (
     <div>
-      {!!displayedRecipes ? (
+      <h1>{currentUser.email}</h1>
+      {!!displayedRecipes && displayedRecipes.length > 0 ? (
         <RecipeGrid
           recipes={displayedRecipes}
           className={"md:grid-cols-2 lg:grid-cols-3"}
         />
       ) : (
-        <p>Loading</p>
+        <p>no recipes</p>
       )}
     </div>
   );

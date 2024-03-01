@@ -6,14 +6,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
-import { ContextProvider } from "./contexts/AppContext";
 import { ROUTES } from "./constants/routes";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const AppWrapper = () => {
   return (
-    <ContextProvider>
+    <AuthProvider>
       <App />
-    </ContextProvider>
+    </AuthProvider>
   );
 };
 

@@ -13,7 +13,7 @@ export function Home() {
   return (
     <div>
       {!!displayedRecipes ? (
-        <RecipeGrid recipes={displayedRecipes} />
+        <RecipeGrid recipes={displayedRecipes} className={"sm:grid-cols-2"} />
       ) : (
         <p>Loading</p>
       )}

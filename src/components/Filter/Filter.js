@@ -6,8 +6,8 @@ export function Filter(props) {
 
   return (
     <button
-      className={`cursor-pointer border rounded-full flex justify-center items-center px-4 py-1 ${
-        isActive && "bg-slate-200"
+      className={`cursor-pointer border rounded-full block text-center px-4 py-1 ${
+        isActive ? "bg-slate-200" : "bg-white"
       }`}
       onClick={() => {
         onClick(!isActive);

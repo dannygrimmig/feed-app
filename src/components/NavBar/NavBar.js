@@ -2,13 +2,24 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import NightsStayIcon from "@mui/icons-material/NightsStay";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import { ROUTES } from "../../constants/routes";
 import { ShadowBox } from "../ShadowBox/ShadowBox";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
+import { useNavigate } from "react-router-dom";
+import { logOut } from "../../utils/authentication";
 
 export function NavBar(props) {
   // imported
-  const { darkMode, setDarkMode, activeSlug, setActiveSlug } = props;
+  const { routes, darkMode, setDarkMode, activeSlug, setActiveSlug } = props;
+  const navigate = useNavigate();
+
+  async function handleLogOut() {
+    try {
+      await logOut();
+      navigate("/");
+    } catch {
+      console.log("failed to logout");
+    }
+  }
 
   return (
     <ShadowBox
@@ -24,7 +35,7 @@ export function NavBar(props) {
           </h1>
 
           <div className="flex space-x-4">
-            {ROUTES.map(({ path }) => (
+            {routes.map(({ path }) => (
               <h3
                 className={`decoration-1 underline-offset-2 font-light ${
                   path === activeSlug && "underline"
@@ -38,11 +49,14 @@ export function NavBar(props) {
           </div>
         </div>
 
-        <div
-          className="cursor-pointer hover:scale-125 transition"
-          onClick={() => setDarkMode(!darkMode)}
-        >
-          {darkMode ? <LightModeIcon /> : <NightsStayIcon />}
+        <div className="flex gap-2 items-center">
+          <div
+            className="cursor-pointer hover:scale-125 transition"
+            onClick={() => setDarkMode(!darkMode)}
+          >
+            {darkMode ? <LightModeIcon /> : <NightsStayIcon />}
+          </div>
+          <button onClick={() => handleLogOut()}>log out</button>
         </div>
       </div>
     </ShadowBox>
