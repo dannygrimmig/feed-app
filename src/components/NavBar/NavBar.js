@@ -23,7 +23,7 @@ export function NavBar(props) {
 
   return (
     <ShadowBox
-      outerClassName="mb-6 sticky top-0 z-10 "
+      outerClassName="mb-6 sticky top-0 z-20"
       innerClassName="bg-sky-300"
     >
       <div className="rounded-lg flex items-center justify-between px-8 py-4  text-slate-800 dark:text-slate-50">

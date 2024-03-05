@@ -80,10 +80,12 @@ export function Authentication() {
           {!!alert && <p className="px-2 py-1 bg-red-400 rounded">{alert}</p>}
 
           <div>
-            <p>Email</p>
+            <label htmlFor="email">Email</label>
             <input
               ref={emailRef}
               type="text"
+              name="email"
+              autoComplete="email"
               className="border rounded px-2 py-1 w-full"
             />
           </div>
@@ -93,6 +95,7 @@ export function Authentication() {
             <input
               ref={passwordRef}
               type="password"
+              name="password"
               className="border rounded px-2 py-1 w-full"
             />
           </div>

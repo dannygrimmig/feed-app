@@ -1,8 +1,8 @@
 import * as React from "react";
 import { RecipeGrid } from "../../components/RecipeGrid/RecipeGrid";
 import { getRecipesBySearch, getRecipesByTags } from "../../api/getRecipes";
-import { MEAL_FILTERS } from "../../constants/filters";
-import { Filter } from "../../components/Filter/Filter";
+import { FILTER_CATEGORIES } from "../../constants/filters";
+import { FilterCategory } from "../../components/FilterCategory/FilterCategory";
 
 export function Search(props) {
   const {
@@ -22,12 +22,13 @@ export function Search(props) {
   const [filteredRecipes, setFilteredRecipes] = React.useState(initialRecipes);
 
   React.useEffect(() => {
+    console.log("search active filters", activeFilters);
     setFilteredRecipes(getRecipesByTags(queriedRecipes, activeFilters));
   }, [queriedRecipes, activeFilters]);
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2 mb-2">
+      <div className="flex flex-wrap gap-2 mb-2 items-center">
         <input
           type="search"
           placeholder="search recipes"
@@ -41,21 +42,24 @@ export function Search(props) {
           }}
         />
 
-        <div className="flex-1 flex items-center min-w-fit">
-          <div className="flex flex-wrap gap-2">
-            {MEAL_FILTERS.map((filter) => (
-              <Filter
-                text={filter}
-                key={filter}
-                onClick={(isActive) => {
-                  isActive
-                    ? setActiveFilters([...activeFilters, filter])
-                    : setActiveFilters((prevFilters) =>
-                        prevFilters.filter((prev) => prev !== filter)
-                      );
-                }}
-              />
-            ))}
+        <div className="flex-1 flex min-w-fit items-center">
+          <div className="flex flex-wrap gap-2 h-max">
+            {Object.keys(FILTER_CATEGORIES).map(function (keyName, keyIndex) {
+              return (
+                <FilterCategory
+                  key={keyName}
+                  text={keyName}
+                  filters={FILTER_CATEGORIES[keyName]}
+                  onFilterChange={(filter, isActive) => {
+                    isActive
+                      ? setActiveFilters([...activeFilters, filter])
+                      : setActiveFilters((prevFilters) =>
+                          prevFilters.filter((prev) => prev !== filter)
+                        );
+                  }}
+                />
+              );
+            })}
           </div>
         </div>
       </div>
