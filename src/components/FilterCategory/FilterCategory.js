@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Filter } from "../Filter/Filter";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 export function FilterCategory(props) {
   const { text, filters = [], onFilterChange = () => {} } = props;
@@ -16,10 +17,11 @@ export function FilterCategory(props) {
         }}
       >
         {text}
+        <ArrowDropDownIcon />
       </button>
 
-      <div className={`absolute top-full z-10 ${!isOpen && "hidden"}`}>
-        <div className="flex flex-col gap-2 mt-2">
+      <div className={`absolute top-full z-10 w-full ${!isOpen && "hidden"}`}>
+        <div className="flex flex-col gap-2 mt-2 items-center">
           {filters.map((filter) => (
             <Filter
               key={filter}
