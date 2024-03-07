@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { Search } from "../Search/Search";
 import { DEMO_RECIPES, RECIPES } from "../../data/recipes";
 import { ShadowBox } from "../../components/ShadowBox/ShadowBox";
+import { addNewUserToDataBase } from "../../api/users";
 
 export function Authentication() {
   // managed
@@ -42,7 +43,7 @@ export function Authentication() {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           navigate("/");
-          setCurrentUser(userCredential.user);
+          setCurrentUser(userCredential.user.uid);
           setIsLoading(false);
         })
         .catch((error) => {
@@ -56,7 +57,8 @@ export function Authentication() {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           navigate("/");
-          setCurrentUser(userCredential.user);
+          setCurrentUser(userCredential.user.uid);
+          addNewUserToDataBase(userCredential.user.uid, email);
           setIsLoading(false);
         })
         .catch((error) => {

@@ -111,3 +111,15 @@ export const DEMO_RECIPES = [
     tags: ["lunch", "dinner"],
   },
 ];
+
+export const SAMPLE_RECIPE = {
+  name: "Eggs",
+  image:
+    "https://www.allrecipes.com/thmb/_tlTl7zfu2mCZzzuf9r8WOW-31U=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/256007-best-scrambled-eggs-ddmfs-3X4-0031-ff526aac78f24031a5f947a546918a39.jpg",
+  stars: 3,
+  serves: 4,
+  time: 10,
+  tags: ["breakfast"],
+  ingredients: ["ingredient"],
+  directions: ["one", "two", "three"],
+};

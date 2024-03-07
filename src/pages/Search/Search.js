@@ -22,7 +22,6 @@ export function Search(props) {
   const [filteredRecipes, setFilteredRecipes] = React.useState(initialRecipes);
 
   React.useEffect(() => {
-    console.log("search active filters", activeFilters);
     setFilteredRecipes(getRecipesByTags(queriedRecipes, activeFilters));
   }, [queriedRecipes, activeFilters]);
 
