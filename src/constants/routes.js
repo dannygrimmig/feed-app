@@ -1,6 +1,7 @@
 import { Search } from "../pages/Search/Search";
 import { Profile } from "../pages/Profile/Profile";
 import { RECIPES } from "../data/recipes";
+import { Post } from "../pages/Post/Post";
 
 export const ROUTES = [
   {
@@ -12,6 +13,10 @@ export const ROUTES = [
         gridClassName={"grid-cols-2 lg:grid-cols-4"}
       />
     ),
+  },
+  {
+    path: "post",
+    element: <Post />,
   },
   {
     path: "profile",

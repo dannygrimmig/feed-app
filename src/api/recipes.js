@@ -7,8 +7,5 @@ export function addNewRecipeToDataBase(recipe, userId) {
   // add to db/recipes
   const recipesReference = ref(db, "recipes/");
   const newRecipeReference = push(recipesReference);
-  set(newRecipeReference, {
-    chefId: userId,
-    ...recipe,
-  });
+  set(newRecipeReference, recipe);
 }
