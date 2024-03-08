@@ -136,7 +136,7 @@ export function Authentication() {
 
         <Search
           initialRecipes={DEMO_RECIPES}
-          recipesToQueryFrom={RECIPES}
+          recipesToQueryFrom={DEMO_RECIPES}
           gridClassName={"lg:grid-cols-3"}
           onRecipeClick={(recipe) =>
             setViewRecipeBadge(

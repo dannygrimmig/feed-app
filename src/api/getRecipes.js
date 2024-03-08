@@ -22,6 +22,6 @@ export function getRecipesByTags(recipes, filters) {
   }
 
   return recipes.filter(({ tags }) =>
-    tags.some((tag) => filters.includes(tag))
+    tags?.some((tag) => filters.includes(tag))
   );
 }

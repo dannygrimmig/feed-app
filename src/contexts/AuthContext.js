@@ -22,7 +22,7 @@ export function AuthProvider({ children }) {
       get(child(dbRef, `users/${user?.uid}`))
         .then((snapshot) => {
           setCurrentUserEmail(
-            snapshot.exists() ? snapshot.val().email : "fail"
+            snapshot.exists() ? snapshot.val().email : "refresh page"
           );
         })
         .catch((error) => {

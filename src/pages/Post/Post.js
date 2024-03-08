@@ -2,6 +2,8 @@ import * as React from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { addNewRecipeToDataBase } from "../../api/recipes";
 import { ShadowBox } from "../../components/ShadowBox/ShadowBox";
+import { FilterCategory } from "../../components/FilterCategory/FilterCategory";
+import { FILTER_CATEGORIES } from "../../constants/filters";
 
 export function Post() {
   // imported
@@ -14,6 +16,7 @@ export function Post() {
   const [time, setTime] = React.useState(0);
   const [newIngredient, setNewIngredient] = React.useState("");
   const [newDirection, setNewDirection] = React.useState("");
+  const [activeTags, setActiveTags] = React.useState([]);
 
   const [ingredients, setIngredients] = React.useState([]);
   const [directions, setDirections] = React.useState([]);
@@ -32,6 +35,7 @@ export function Post() {
       name: name,
       image: image,
       serves: serves,
+      tags: activeTags,
       time: time,
       ingredients: ingredients,
       directions: directions,
@@ -113,6 +117,24 @@ export function Post() {
                   type="number"
                   className="outline-none w-8"
                 />
+              </div>
+              <div className="flex-1 flex min-w-fit items-center">
+                <div className="flex flex-wrap gap-2 h-max">
+                  {Object.keys(FILTER_CATEGORIES).map((keyName) => (
+                    <FilterCategory
+                      key={keyName}
+                      text={keyName}
+                      filters={FILTER_CATEGORIES[keyName]}
+                      onFilterChange={(filter, isActive) => {
+                        isActive
+                          ? setActiveTags([...activeTags, filter])
+                          : setActiveTags((prevFilters) =>
+                              prevFilters.filter((prev) => prev !== filter)
+                            );
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
 

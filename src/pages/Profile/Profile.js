@@ -14,7 +14,8 @@ export function Profile() {
 
   return (
     <div>
-      <h1 className="mb-4">Hi, {currentUserEmail}!</h1>
+      <h1>Hi, {currentUserEmail}!</h1>
+      <p className="font-header mb-4">your recipes</p>
 
       {!!displayedRecipes && displayedRecipes.length > 0 ? (
         <RecipeGrid

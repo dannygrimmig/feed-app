@@ -8,7 +8,7 @@ export function useRecipes() {
 }
 
 export function RecipesProvider({ children }) {
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = React.useState(false);
   const [recipes, setRecipes] = React.useState([]);
 
   React.useEffect(() => {

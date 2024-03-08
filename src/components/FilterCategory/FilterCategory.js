@@ -9,6 +9,7 @@ export function FilterCategory(props) {
   return (
     <div className="flex flex-col gap-2 relative">
       <button
+        type="button"
         className={`cursor-pointer border rounded-full block text-center px-4 py-2 ${
           isOpen ? "bg-slate-200" : "bg-white"
         }`}
