@@ -7,7 +7,7 @@ import {
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { Search } from "../Search/Search";
-import { DEMO_RECIPES, RECIPES } from "../../data/recipes";
+import { DEMO_RECIPES } from "../../data/recipes";
 import { ShadowBox } from "../../components/ShadowBox/ShadowBox";
 import { addNewUserToDataBase } from "../../api/users";
 
