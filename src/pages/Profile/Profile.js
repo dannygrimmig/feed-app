@@ -2,20 +2,19 @@ import * as React from "react";
 import { getRecipesByUserId } from "../../api/getRecipes";
 import { RecipeGrid } from "../../components/RecipeGrid/RecipeGrid";
 import { useAuth } from "../../contexts/AuthContext";
+import { useRecipes } from "../../contexts/RecipeContext";
 
 export function Profile() {
   // imported
   const { currentUser, currentUserEmail } = useAuth();
-
-  // managed
+  const { recipes } = useRecipes();
 
   // derived
-  const displayedRecipes = getRecipesByUserId(currentUser.email);
+  const displayedRecipes = getRecipesByUserId(recipes, currentUser);
 
   return (
     <div>
-      <h1>current uid: {currentUser}</h1>
-      <h1 className="mb-4">current email: {currentUserEmail}</h1>
+      <h1 className="mb-4">Hi, {currentUserEmail}!</h1>
 
       {!!displayedRecipes && displayedRecipes.length > 0 ? (
         <RecipeGrid

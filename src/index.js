@@ -8,11 +8,14 @@ import App from "./App";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import { ROUTES } from "./constants/routes";
 import { AuthProvider } from "./contexts/AuthContext";
+import { RecipesProvider } from "./contexts/RecipeContext";
 
 const AppWrapper = () => {
   return (
     <AuthProvider>
-      <App />
+      <RecipesProvider>
+        <App />
+      </RecipesProvider>
     </AuthProvider>
   );
 };

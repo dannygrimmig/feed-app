@@ -1,18 +1,11 @@
-import { RECIPES } from "../data/recipes";
-
-// All Recipes
-export function getAllRecipes() {
-  return RECIPES;
-}
-
 // Feed Recipes
-export function getFeedRecipes(currentChef) {
-  return RECIPES.filter((recipe) => recipe.chef !== currentChef);
+export function getFeedRecipes(recipes, currentChefId) {
+  return recipes.filter((recipe) => recipe.chefId !== currentChefId);
 }
 
 // Recipes by User
-export function getRecipesByUserId(userid) {
-  return RECIPES.filter((recipe) => recipe.chef === userid);
+export function getRecipesByUserId(recipes, userId) {
+  return recipes.filter((recipe) => recipe.chefId === userId);
 }
 
 // Recipes by Search Query

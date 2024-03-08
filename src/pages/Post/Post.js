@@ -84,8 +84,8 @@ export function Post() {
       )}
 
       <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-2 py-4">
-          <div className="flex flex-col border-r p-4 gap-4">
+        <div className="grid md:grid-cols-2 py-4">
+          <div className="flex flex-col md:border-r p-4 gap-4">
             <input
               value={name}
               onChange={({ target }) => setName(target.value)}

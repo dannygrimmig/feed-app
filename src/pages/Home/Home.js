@@ -1,21 +1,23 @@
 import * as React from "react";
 import { RecipeGrid } from "../../components/RecipeGrid/RecipeGrid";
 import { getFeedRecipes } from "../../api/getRecipes";
-import { myContext } from "../../contexts/AppContext";
+import { useRecipes } from "../../contexts/RecipeContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 export function Home() {
   // imported
-  const { currentChef } = React.useContext(myContext);
+  const { currentUser } = useAuth();
+  const { recipes } = useRecipes();
 
   // derived
-  const displayedRecipes = getFeedRecipes(currentChef);
+  const displayedRecipes = getFeedRecipes(recipes, currentUser);
 
   return (
     <div>
-      {!!displayedRecipes ? (
+      {!!displayedRecipes && displayedRecipes.length > 0 ? (
         <RecipeGrid recipes={displayedRecipes} className={"sm:grid-cols-2"} />
       ) : (
-        <p>Loading</p>
+        <p>No Feed Recipes</p>
       )}
     </div>
   );
