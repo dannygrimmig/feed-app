@@ -6,6 +6,7 @@ export function Filter(props) {
 
   return (
     <button
+      type="button"
       className={`cursor-pointer border rounded-full block text-center px-4 py-2 ${
         isActive ? "bg-slate-200" : "bg-white"
       }`}

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { auth } from "../firebase";
+import { getDatabase, ref, child, get } from "firebase/database";
 
 const AuthContext = React.createContext();
 
@@ -9,11 +10,27 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = React.useState();
+  const [currentUserEmail, setCurrentUserEmail] = React.useState();
   const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
+      setCurrentUser(user?.uid);
+
+      // constants about user
+      const dbRef = ref(getDatabase());
+      get(child(dbRef, `users/${user?.uid}`))
+        .then((snapshot) => {
+          setCurrentUserEmail(
+            snapshot.exists() ? snapshot.val().email : "refresh page"
+          );
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
+      // end that
+
       setIsLoading(false);
     });
     return unsubscribe;
@@ -22,6 +39,7 @@ export function AuthProvider({ children }) {
   const value = {
     currentUser,
     setCurrentUser,
+    currentUserEmail,
   };
 
   return (

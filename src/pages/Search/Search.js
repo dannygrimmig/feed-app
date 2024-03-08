@@ -3,11 +3,14 @@ import { RecipeGrid } from "../../components/RecipeGrid/RecipeGrid";
 import { getRecipesBySearch, getRecipesByTags } from "../../api/getRecipes";
 import { FILTER_CATEGORIES } from "../../constants/filters";
 import { FilterCategory } from "../../components/FilterCategory/FilterCategory";
+import { useRecipes } from "../../contexts/RecipeContext";
 
 export function Search(props) {
+  const { recipes } = useRecipes();
+
   const {
-    initialRecipes,
-    recipesToQueryFrom,
+    initialRecipes = recipes,
+    recipesToQueryFrom = recipes,
     gridClassName,
     onRecipeClick = () => {},
   } = props;
@@ -22,7 +25,6 @@ export function Search(props) {
   const [filteredRecipes, setFilteredRecipes] = React.useState(initialRecipes);
 
   React.useEffect(() => {
-    console.log("search active filters", activeFilters);
     setFilteredRecipes(getRecipesByTags(queriedRecipes, activeFilters));
   }, [queriedRecipes, activeFilters]);
 

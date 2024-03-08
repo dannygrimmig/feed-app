@@ -79,35 +79,47 @@ export const RECIPES = makeRecipes();
 export const DEMO_RECIPES = [
   {
     id: 1,
-    name: "Eggs",
+    name: "Krabby Patty",
     image:
-      "https://www.allrecipes.com/thmb/_tlTl7zfu2mCZzzuf9r8WOW-31U=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/256007-best-scrambled-eggs-ddmfs-3X4-0031-ff526aac78f24031a5f947a546918a39.jpg",
-    chef: "dannygrimmig",
-    stars: 3,
-    serves: 3,
-    time: 10,
-    tags: ["breakfast"],
-  },
-  {
-    id: 2,
-    name: "Chicken Ceaser Wrap",
-    image:
-      "https://cookingwithcocktailrings.com/wp-content/uploads/2022/07/Grilled-Chicken-Caesar-Wrap-46.jpg",
-    chef: "chrisgrimmig",
+      "https://media0.giphy.com/media/K4x1ZL36xWCf6/giphy.gif?cid=6c09b952o7p2veaoxs6utmxe3wjdlyfpg2oinm4sxieln833&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g",
+    chef: "patrickstar",
     stars: 5,
     serves: 1,
     time: 25,
-    tags: ["lunch"],
+    tags: ["lunch", "dinner"],
+  },
+  {
+    id: 2,
+    name: "Hero Hunny",
+    image:
+      "https://media2.giphy.com/media/84ZzhsJZWlE3e/giphy.gif?cid=6c09b952i022x2734kbuko15c6oryt6b7o4unmu6ro6l37qx&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g",
+    chef: "WinnieThePooh",
+    stars: 4.5,
+    serves: 1,
+    time: 10,
+    tags: ["breakfast", "dessert"],
   },
   {
     id: 3,
-    name: "Cacio Pepe",
+    name: "Cookies",
     image:
-      "https://www.sipandfeast.com/wp-content/uploads/2019/08/bucatini-cacio-e-pepe-recipe-snippet.jpg",
-    chef: "bengrimmig",
+      "https://media4.giphy.com/media/HGe4zsOVo7Jvy/giphy.gif?cid=6c09b9525n7nw3mbvn69g727o38rpauix9vyiv3tzsiaxdin&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g",
+    chef: "CookieMonster",
     stars: 4,
-    serves: 5,
-    time: 50,
-    tags: ["lunch", "dinner"],
+    serves: 1,
+    time: 30,
+    tags: ["dessert"],
   },
 ];
+
+export const SAMPLE_RECIPE = {
+  name: "Eggs",
+  image:
+    "https://www.allrecipes.com/thmb/_tlTl7zfu2mCZzzuf9r8WOW-31U=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/256007-best-scrambled-eggs-ddmfs-3X4-0031-ff526aac78f24031a5f947a546918a39.jpg",
+  stars: 3,
+  serves: 4,
+  time: 10,
+  tags: ["breakfast"],
+  ingredients: ["ingredient"],
+  directions: ["one", "two", "three"],
+};
