@@ -4,22 +4,12 @@ import NightsStayIcon from "@mui/icons-material/NightsStay";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { ShadowBox } from "../ShadowBox/ShadowBox";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
-import { useNavigate } from "react-router-dom";
-import { logOut } from "../../utils/authentication";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { PROFILE_ROUTE } from "../../constants/routes";
 
 export function NavBar(props) {
   // imported
   const { routes, darkMode, setDarkMode, activeSlug, setActiveSlug } = props;
-  const navigate = useNavigate();
-
-  async function handleLogOut() {
-    try {
-      await logOut();
-      navigate("/");
-    } catch {
-      console.log("failed to logout");
-    }
-  }
 
   return (
     <ShadowBox
@@ -56,7 +46,12 @@ export function NavBar(props) {
           >
             {darkMode ? <LightModeIcon /> : <NightsStayIcon />}
           </div>
-          <button onClick={() => handleLogOut()}>log out</button>
+
+          <div className="cursor-pointer hover:scale-125 transition">
+            <Link to={PROFILE_ROUTE.path}>
+              <AccountCircleIcon />
+            </Link>
+          </div>
         </div>
       </div>
     </ShadowBox>
