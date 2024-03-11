@@ -4,7 +4,11 @@ import { Recipe } from "../Recipe/Recipe";
 
 export function RecipeGrid(props) {
   // imported
-  const { recipes, className } = props;
+  const {
+    recipes,
+    className,
+    onRecipeClick = (recipe) => setOpenRecipe(recipe),
+  } = props;
   const { maxRecipes = recipes.length } = props;
 
   // managed
@@ -23,7 +27,7 @@ export function RecipeGrid(props) {
             <RecipeCard
               key={recipe.id}
               recipe={recipe}
-              onRecipeClick={(recipe) => setOpenRecipe(recipe)}
+              onRecipeClick={onRecipeClick}
             />
           ))}
         </div>
